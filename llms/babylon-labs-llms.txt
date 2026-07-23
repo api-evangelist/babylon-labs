@@ -1,0 +1,76 @@
+# Babylon Labs Documentation
+> Bitcoin staking protocol enabling BTC holders to secure Proof-of-Stake networks without custody, bridges, or wrapping.
+
+Version: 1.4.0
+
+## Problems We Solve
+- BTC liquidity is locked and unproductive → Stake BTC to earn rewards while maintaining full self-custody
+- Proof-of-Stake chains lack Bitcoin-grade security → Provide BTC-backed economic security via native staking
+- Wrapped BTC introduces bridge and custodian risk → Native Bitcoin staking using covenant scripts—no wrapping or bridges
+- Liquid staking requires trusting intermediary protocols → Direct protocol participation with self-custodied BTC
+- Developers need to integrate BTC security into their chains → Babylon SDK provides modular plug-in for Cosmos chains and rollups
+
+## Key Facts
+- Mainnet Name: Babylon Genesis
+- Mainnet Launch: April 2025
+- Block Time: ~10 seconds
+- Native Token: BABY
+- Consensus: CometBFT (Tendermint)
+- Smart Contracts: CosmWasm
+- Primary Languages: Go (core protocol), TypeScript (SDK), Rust (contracts)
+- Btc Staking Mechanism: Covenant scripts with finality provider delegation
+- Unbonding Period: ~21 days (BTC), variable (BABY)
+- Finality Time: 1 block (~10 seconds) after BTC-backed finality
+
+## Key Capabilities
+- Native BTC Staking: Lock BTC in time-locked covenant scripts to secure PoS networks
+- Finality Providers: Run finality provider nodes to vote on blocks and earn rewards
+- BSN Integration: Connect any Proof-of-Stake chain to receive BTC-backed security
+- CosmWasm dApps: Build smart contracts on Babylon Genesis using Rust/CosmWasm
+- Dual Staking: Combine BTC and BABY staking for enhanced security model
+
+## Differentiators
+- vs Wrapped BTC (WBTC, tBTC): No bridge risk—BTC stays on Bitcoin L1 in covenant scripts
+- vs Liquid Staking (Lido, etc.): Direct protocol participation, no intermediary derivative tokens
+- vs Bitcoin L2s/Sidechains: Native Bitcoin scripts, not a sidechain—BTC never leaves Bitcoin
+- vs Restaking protocols: Primary staking of native BTC, not restaking already-staked assets
+
+## Overview & Concepts
+- [Overview & Concepts Overview](https://docs.babylonlabs.io/overview/): Documentation for overview & concepts
+
+## Developer Documentation
+- [Developer Documentation Overview](https://docs.babylonlabs.io/developers/): Documentation for developer documentation
+
+## Operator Documentation
+- [Operator Documentation Overview](https://docs.babylonlabs.io/operators/): Documentation for operator documentation
+
+## Staker Guides
+- [Staker Guides Overview](https://docs.babylonlabs.io/stakers/): Documentation for staker guides
+
+## Code Repositories
+### Core Protocol
+- [babylon](https://github.com/babylonlabs-io/babylon): [Go] Main Babylon chain implementation
+### Infrastructure
+- [babylon-staking-indexer](https://github.com/babylonlabs-io/babylon-staking-indexer): [Go] Babylon staking indexer
+- [networks](https://github.com/babylonlabs-io/networks): [YAML/JSON] Network configurations and genesis files
+- [staking-api-service](https://github.com/babylonlabs-io/staking-api-service): [Go] Staking API backend service
+- [staking-queue-client](https://github.com/babylonlabs-io/staking-queue-client): [Go] Staking queue client library
+### Node Operators
+- [btc-staker](https://github.com/babylonlabs-io/btc-staker): [Go] BTC staker daemon
+- [covenant-signer](https://github.com/babylonlabs-io/covenant-signer): [Go] Covenant signer service
+- [finality-provider](https://github.com/babylonlabs-io/finality-provider): [Go] Finality provider daemon
+- [vigilante](https://github.com/babylonlabs-io/vigilante): [Go] Vigilante reporter/submitter
+### SDKs & Libraries
+- [babylon-sdk](https://github.com/babylonlabs-io/babylon-sdk): [Go] Cosmos SDK integration
+- [btc-staking-ts](https://github.com/babylonlabs-io/btc-staking-ts): [TypeScript] TypeScript SDK for BTC staking
+### Smart Contracts
+- [cosmos-bsn-contracts](https://github.com/babylonlabs-io/cosmos-bsn-contracts): [Rust] CosmWasm contracts for BSN integration
+- [rollup-bsn-contracts](https://github.com/babylonlabs-io/rollup-bsn-contracts): [Solidity] Rollup BSN smart contracts
+### Utilities
+- [cli-tools](https://github.com/babylonlabs-io/cli-tools): [Go] CLI tools for Babylon
+
+## Optional
+- [Blog](https://babylonlabs.io/blog): Latest news and updates
+- [Discord](https://discord.gg/babylonglobal): Community support and discussions
+- [GitHub](https://github.com/babylonlabs-io): All Babylon Labs repositories
+- [Documentation](https://docs.babylonlabs.io): Full documentation site

@@ -1,0 +1,34 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/babylon-labs-staking-api-openapi-original.yml
+api: Babylon Staking API
+authentication:
+  style: none
+  note: The public Babylon Staking API endpoints declare no securitySchemes — they are
+    open, read-oriented endpoints over public on-chain BTC staking state. Governed by
+    an API Access License (see lifecycle/).
+pagination:
+  style: cursor
+  request_param: pagination_key
+  response_field: pagination.next_key
+  note: Cursor-based. Pass the `pagination_key` query parameter to fetch the next page;
+    the response `pagination.next_key` carries the cursor for the following page (empty
+    when exhausted).
+idempotency:
+  supported: false
+  note: The API surface is read-only (GET) except the phase-1 unbonding submission
+    (POST /v1/unbonding); no idempotency-key contract is documented.
+versioning:
+  scheme: uri-path
+  current: v2
+  legacy: v1
+  note: v1 endpoints are deprecated in favor of v2 (see lifecycle/). Version is carried
+    in the URL path prefix.
+error_envelope:
+  ref: errors/babylon-labs-problem-types.yml
+  shape: '{ err, errorCode, statusCode }'
+rate_limiting:
+  documented: false
+cross_links:
+  errors: errors/babylon-labs-problem-types.yml
+  lifecycle: lifecycle/babylon-labs-lifecycle.yml

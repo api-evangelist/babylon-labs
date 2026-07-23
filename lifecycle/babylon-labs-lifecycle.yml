@@ -1,0 +1,31 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/babylon-labs-staking-api-openapi-original.yml + https://github.com/babylonlabs-io/staking-api-service/releases
+api: Babylon Staking API
+versioning:
+  scheme: uri-path
+  current: v2
+  legacy: v1
+  docs: https://docs.babylonlabs.io/developers/
+deprecation:
+  policy: >-
+    In-spec deprecation. v1 endpoints are marked `deprecated true` in the OpenAPI
+    with descriptions pointing to their v2 replacements. Phase-1 delegation endpoints
+    are being retired as delegations withdraw or register into phase-2.
+  sunset_header: false
+license: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
+status_page: null
+status_page_note: babylonlabs.statuspage.io resolves but is marked "Page Inactive";
+  no active public status page found.
+deprecated_operations:
+- openapi/babylon-labs-staking-api-openapi-original.yml#/v1/delegation
+- openapi/babylon-labs-staking-api-openapi-original.yml#/v1/finality-providers
+- openapi/babylon-labs-staking-api-openapi-original.yml#/v1/global-params
+- openapi/babylon-labs-staking-api-openapi-original.yml#/v1/stats
+- openapi/babylon-labs-staking-api-openapi-original.yml#/v1/stats/staker
+replacements:
+  /v1/delegation: /v2/delegation
+  /v1/finality-providers: /v2/finality-providers
+  /v1/global-params: /v2/network-info
+  /v1/stats: /v2/stats
+  /v1/stats/staker: /v2/staker/stats

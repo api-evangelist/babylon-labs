@@ -1,0 +1,48 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/babylon-labs-staking-api-openapi-original.yml
+api: Babylon Staking API
+entities:
+- name: Delegation
+  description: A BTC staking delegation (staking transaction) from a staker to a finality
+    provider.
+  key_fields: [staking_tx_hash_hex, staker_btc_pk, finality_provider_btc_pk, state]
+  endpoints: [/v2/delegation, /v2/delegations, /v1/delegation, /v1/staker/delegations]
+- name: FinalityProvider
+  description: A finality provider that votes on blocks and receives BTC-backed delegations.
+  key_fields: [btc_pk, moniker, active_tvl, state]
+  endpoints: [/v2/finality-providers, /v1/finality-providers]
+- name: Staker
+  description: A BTC holder who delegates stake; identified by BTC public key / address.
+  key_fields: [staker_btc_pk, address]
+  endpoints: [/v1/staker/delegations, /v1/staker/delegation/check, /v1/staker/pubkey-lookup,
+    /v2/staker/stats, /v1/stats/staker]
+- name: NetworkInfo
+  description: Global network / staking parameters (successor to v1 global-params).
+  endpoints: [/v2/network-info, /v1/global-params]
+- name: Stats
+  description: Aggregate staking statistics across the network.
+  endpoints: [/v2/stats, /v1/stats]
+- name: Price
+  description: Token price data.
+  endpoints: [/v2/prices]
+- name: APR
+  description: Personalized / network staking APR.
+  endpoints: [/v2/apr]
+relationships:
+- from: Delegation
+  to: Staker
+  type: belongs_to
+  via: staker_btc_pk
+- from: Delegation
+  to: FinalityProvider
+  type: belongs_to
+  via: finality_provider_btc_pk
+- from: Staker
+  to: Delegation
+  type: has_many
+  via: staker_btc_pk
+- from: FinalityProvider
+  to: Delegation
+  type: has_many
+  via: finality_provider_btc_pk

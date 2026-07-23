@@ -1,0 +1,18 @@
+{
+  "provider": "babylon-labs",
+  "sources": [
+    "babylon-labs-shared-api-openapi.yml",
+    "babylon-labs-v1-api-openapi.yml",
+    "babylon-labs-v2-api-openapi.yml"
+  ],
+  "outputs": [
+    "babylon-labs-shared-api-openapi.yml",
+    "babylon-labs-v1-api-openapi.yml",
+    "babylon-labs-v2-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

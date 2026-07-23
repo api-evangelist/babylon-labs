@@ -1,0 +1,24 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/babylonlabs-io/staking-api-service/releases
+api: Babylon Staking API
+scheme: semver
+current_version: v3.0.9
+note: The staking-api-service backend publishes dated GitHub Releases; the public API
+  surface is versioned by URL path (v1 deprecated, v2 current). Recent backend releases
+  below.
+entries:
+- version: v3.0.9
+  date: '2026-01-12'
+- version: v3.0.8
+  date: '2025-12-18'
+- version: v3.0.7
+  date: '2025-12-12'
+- version: v3.0.6
+  date: '2025-12-10'
+- version: v3.0.5
+  date: '2025-11-19'
+sdk_changelog:
+  package: "@babylonlabs-io/btc-staking-ts"
+  current_version: v2.8.6
+  source: https://github.com/babylonlabs-io/btc-staking-ts/releases

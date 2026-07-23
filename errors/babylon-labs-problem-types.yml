@@ -1,0 +1,43 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/babylon-labs-staking-api-openapi-original.yml
+format: custom-json
+envelope:
+  media_type: application/json
+  shape: '{ "err": <detail>, "errorCode": <ErrorCode>, "statusCode": <int> }'
+  note: The Babylon Staking API returns a shared error envelope (not RFC 9457 problem+json).
+    The machine-readable classifier is the string enum `errorCode`; `statusCode` mirrors
+    the HTTP status.
+error_codes:
+- code: INTERNAL_SERVICE_ERROR
+  http_status: 500
+  meaning: Unexpected server-side failure.
+- code: VALIDATION_ERROR
+  http_status: 400
+  meaning: Request failed input validation.
+- code: NOT_FOUND
+  http_status: 404
+  meaning: Requested resource does not exist.
+- code: BAD_REQUEST
+  http_status: 400
+  meaning: Malformed or invalid request.
+- code: FORBIDDEN
+  http_status: 403
+  meaning: Caller is not permitted to perform the request.
+- code: UNPROCESSABLE_ENTITY
+  http_status: 422
+  meaning: Request understood but semantically invalid.
+- code: REQUEST_TIMEOUT
+  http_status: 408
+  meaning: Request timed out.
+problems:
+- status: 400
+  code: BAD_REQUEST
+  title: Bad Request
+  observed_on:
+  - openapi/babylon-labs-staking-api-openapi-original.yml#/v1/delegation
+  - openapi/babylon-labs-staking-api-openapi-original.yml#/v1/staker/delegation/check
+  - openapi/babylon-labs-staking-api-openapi-original.yml#/v2/delegation
+- status: 404
+  code: NOT_FOUND
+  title: Resource not found

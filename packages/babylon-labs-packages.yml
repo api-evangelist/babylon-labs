@@ -1,0 +1,40 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.npmjs.com/package/@babylonlabs-io/btc-staking-ts + https://github.com/babylonlabs-io
+packages:
+- language: typescript
+  registry: npm
+  name: "@babylonlabs-io/btc-staking-ts"
+  version: 2.8.6
+  url: https://www.npmjs.com/package/@babylonlabs-io/btc-staking-ts
+  repo: https://github.com/babylonlabs-io/btc-staking-ts
+  install: npm install @babylonlabs-io/btc-staking-ts
+  description: Library exposing methods for the creation and consumption of Bitcoin
+    transactions pertaining to Babylon's Bitcoin Staking protocol.
+  official: true
+- language: go
+  registry: go-modules
+  name: github.com/babylonlabs-io/babylon-sdk
+  url: https://github.com/babylonlabs-io/babylon-sdk
+  install: go get github.com/babylonlabs-io/babylon-sdk
+  description: Cosmos SDK integration module (Babylon SDK) — modular BTC-security plug-in
+    for Cosmos chains and rollups.
+  official: true
+- language: go
+  registry: go-modules
+  name: github.com/babylonlabs-io/staking-queue-client
+  url: https://github.com/babylonlabs-io/staking-queue-client
+  install: go get github.com/babylonlabs-io/staking-queue-client
+  description: Staking queue client library used by the staking API backend service.
+  official: true
+binaries:
+- name: btc-staker
+  language: go
+  url: https://github.com/babylonlabs-io/btc-staker
+  description: BTC staker daemon (stakercli / stakerd).
+  official: true
+- name: cli-tools
+  language: go
+  url: https://github.com/babylonlabs-io/cli-tools
+  description: CLI tools for Babylon.
+  official: true

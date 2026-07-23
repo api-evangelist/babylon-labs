@@ -1,0 +1,15 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/babylon-labs-staking-api-openapi-original.yml
+note: Steps are grounded in real, live public HTTP endpoints of the Babylon Staking
+  API. The Swagger 2.0 spec defines no operationIds, so operations are referenced by
+  verified method+path.
+skills:
+- file: babylon-labs-check-staking-status.md
+  name: Check Babylon BTC staking status
+  api: openapi/babylon-labs-staking-api-openapi-original.yml
+  operations:
+  - GET /v1/staker/delegation/check
+  - GET /v2/delegations
+  - GET /v2/finality-providers
+  - GET /v2/network-info

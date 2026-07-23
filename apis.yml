@@ -1,8 +1,15 @@
 aid: babylon-labs
 name: Babylon Labs
-description: 'Babylon Labs is a company surfaced as a portfolio company of paradigm and added to the API
-  Evangelist network as a stub for enrichment. Sector: crypto-defi. This profile is a lead awaiting the
-  enrichment pipeline.'
+description: >-
+  Babylon Labs builds the Bitcoin staking protocol that lets BTC holders secure
+  Proof-of-Stake networks without custody, bridges, or wrapping. BTC is locked in
+  time-locked covenant scripts on Bitcoin L1 and delegated to finality providers,
+  providing Bitcoin-grade economic security to Cosmos chains, rollups, and other
+  Bitcoin Supercharged Networks (BSNs) while stakers retain self-custody. Its mainnet,
+  Babylon Genesis, launched April 2025 on CometBFT with CosmWasm smart contracts and
+  the BABY native token. Babylon exposes a public Babylon Staking API for querying
+  delegations, finality providers, network parameters, stats, prices, and APR, plus
+  Go and TypeScript SDKs, node/operator daemons, and CosmWasm contracts.
 url: https://raw.githubusercontent.com/api-evangelist/babylon-labs/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,18 +17,131 @@ x-backed-by:
 - paradigm
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
+image: https://avatars.githubusercontent.com/u/175623330?v=4
 tags:
 - Company
 - Crypto Defi
-apis: []
+- Bitcoin
+- Bitcoin Staking
+- Blockchain
+- Cosmos
+- Proof of Stake
+- DeFi
+- Staking
+- API
+apis:
+- aid: babylon-labs:babylon-labs-shared-api
+  name: Babylon Labs shared API
+  description: Shared API endpoints
+  humanURL: https://docs.babylonlabs.io/developers/
+  baseURL: https://staking-api.babylonlabs.io
+  tags:
+  - shared
+  properties:
+  - type: OpenAPI
+    url: openapi/babylon-labs-shared-api-openapi.yml
+  - type: APIReference
+    url: https://staking-api.babylonlabs.io/swagger/doc.json
+  - type: License
+    url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
+- aid: babylon-labs:babylon-labs-v1-api
+  name: Babylon Labs v1 API
+  description: Babylon Phase-1 API endpoints (Deprecated)
+  humanURL: https://docs.babylonlabs.io/developers/
+  baseURL: https://staking-api.babylonlabs.io
+  tags:
+  - v1
+  properties:
+  - type: OpenAPI
+    url: openapi/babylon-labs-v1-api-openapi.yml
+  - type: APIReference
+    url: https://staking-api.babylonlabs.io/swagger/doc.json
+  - type: License
+    url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
+- aid: babylon-labs:babylon-labs-v2-api
+  name: Babylon Labs v2 API
+  description: Babylon Phase-2 API endpoints
+  humanURL: https://docs.babylonlabs.io/developers/
+  baseURL: https://staking-api.babylonlabs.io
+  tags:
+  - v2
+  properties:
+  - type: OpenAPI
+    url: openapi/babylon-labs-v2-api-openapi.yml
+  - type: APIReference
+    url: https://staking-api.babylonlabs.io/swagger/doc.json
+  - type: License
+    url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/babylon-labs-agentic-access.yml
+- type: DomainSecurity
+  url: security/babylon-labs-domain-security.yml
+- type: LLMsTxt
+  url: llms/babylon-labs-llms.txt
+- type: Packages
+  url: packages/babylon-labs-packages.yml
+- type: SDKs
+  url: packages/babylon-labs-packages.yml
+- type: ErrorCatalog
+  url: errors/babylon-labs-problem-types.yml
+- type: Conventions
+  url: conventions/babylon-labs-conventions.yml
+- type: Lifecycle
+  url: lifecycle/babylon-labs-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/babylon-labs-lifecycle.yml
+- type: Conformance
+  url: conformance/babylon-labs-conformance.yml
+- type: DataModel
+  url: data-model/babylon-labs-data-model.yml
+- type: MCPServer
+  url: mcp/babylon-labs-mcp.yml
+- type: Overlay
+  url: overlays/babylon-labs-staking-api-overlay.yaml
+- type: ChangeLog
+  url: changelog/babylon-labs-changelog.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Documentation
+  url: https://docs.babylonlabs.io
+- type: DeveloperPortal
+  url: https://docs.babylonlabs.io/developers/
+- type: GettingStarted
+  url: https://docs.babylonlabs.io/stakers/
+- type: GitHubOrganization
+  url: https://github.com/babylonlabs-io
+- type: Blog
+  url: https://babylonlabs.io/blog
+- type: Support
+  url: https://discord.gg/babylonglobal
+- type: TermsOfService
+  url: https://babylonlabs.io/terms
+- type: PrivacyPolicy
+  url: https://babylonlabs.io/privacy-policy
 - type: Website
   url: https://babylonlabs.io
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

@@ -1,0 +1,41 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: openapi/babylon-labs-staking-api-openapi-original.yml
+note: No official hosted/remote MCP server was found for Babylon Labs. This is a candidate
+  tool list derived from the current (v2 + shared) operations of the public Babylon
+  Staking API; it is not published by the provider.
+server:
+  name: babylon-labs-staking
+  transport: http
+tools:
+- name: healthcheck
+  description: Health check the staking API service.
+  source_operation: openapi/babylon-labs-staking-api-openapi-original.yml#GET /healthcheck
+- name: get_delegation
+  description: Get a single BTC staking delegation by staking transaction hash.
+  source_operation: openapi/babylon-labs-staking-api-openapi-original.yml#GET /v2/delegation
+- name: list_delegations
+  description: List BTC staking delegations for a staker.
+  source_operation: openapi/babylon-labs-staking-api-openapi-original.yml#GET /v2/delegations
+- name: list_finality_providers
+  description: List finality providers sorted by active TVL.
+  source_operation: openapi/babylon-labs-staking-api-openapi-original.yml#GET /v2/finality-providers
+- name: get_network_info
+  description: Get global network / staking parameters.
+  source_operation: openapi/babylon-labs-staking-api-openapi-original.yml#GET /v2/network-info
+- name: get_staker_stats
+  description: Get staking statistics for a staker.
+  source_operation: openapi/babylon-labs-staking-api-openapi-original.yml#GET /v2/staker/stats
+- name: get_stats
+  description: Get overall network staking statistics.
+  source_operation: openapi/babylon-labs-staking-api-openapi-original.yml#GET /v2/stats
+- name: get_prices
+  description: Get token price data.
+  source_operation: openapi/babylon-labs-staking-api-openapi-original.yml#GET /v2/prices
+- name: get_apr
+  description: Get personalized / network staking APR.
+  source_operation: openapi/babylon-labs-staking-api-openapi-original.yml#GET /v2/apr
+- name: check_staker_delegation
+  description: Check whether a staker BTC address has an active delegation.
+  source_operation: openapi/babylon-labs-staking-api-openapi-original.yml#GET /v1/staker/delegation/check

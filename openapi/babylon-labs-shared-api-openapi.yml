@@ -1,0 +1,147 @@
+swagger: '2.0'
+info:
+  contact:
+    email: contact@babylonlabs.io
+  description: 'The Babylon Staking API offers information about the state of the Babylon BTC Staking system.
+
+    Your access and use is governed by the API Access License linked to below.'
+  license:
+    name: API Access License
+    url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
+  title: Babylon Staking shared API
+  version: '2.0'
+tags:
+- description: Shared API endpoints
+  name: shared
+paths:
+  /healthcheck:
+    get:
+      description: Health check the service, including ping database connection
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: Server is up and running
+          schema:
+            type: string
+      summary: Health check endpoint
+      tags:
+      - shared
+  /v1/staker/delegation/check:
+    get:
+      description: 'Check if a staker has an active delegation by the staker BTC address (Taproot or Native Segwit).
+
+        Optionally, you can provide a timeframe to check if the delegation is active within the provided timeframe
+
+        The available timeframe is "today" which checks after UTC 12AM of the current day'
+      parameters:
+      - description: Staker BTC address in Taproot/Native Segwit format
+        in: query
+        name: address
+        required: true
+        type: string
+      - description: Check if the delegation is active within the provided timeframe
+        enum:
+        - today
+        in: query
+        name: timeframe
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: Delegation check result
+          schema:
+            $ref: '#/definitions/v1handlers.DelegationCheckPublicResponse'
+        '400':
+          description: 'Error: Bad Request'
+          schema:
+            $ref: '#/definitions/github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error'
+      tags:
+      - shared
+  /v1/staker/pubkey-lookup:
+    get:
+      description: 'Retrieves public keys for the given BTC addresses. This endpoint
+
+        only returns public keys for addresses that have associated delegations in
+
+        the system. If an address has no associated delegation, it will not be
+
+        included in the response. Supports both Taproot and Native Segwit addresses.'
+      parameters:
+      - collectionFormat: multi
+        description: List of BTC addresses to look up (up to 10), currently only supports Taproot and Native Segwit addresses
+        in: query
+        items:
+          type: string
+        name: address
+        required: true
+        type: array
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: A map of BTC addresses to their corresponding public keys (only addresses with delegations are returned)
+          schema:
+            $ref: '#/definitions/handler.PublicResponse-map_string_string'
+        '400':
+          description: 'Bad Request: Invalid input parameters'
+          schema:
+            $ref: '#/definitions/github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error'
+      summary: Get stakers' public keys
+      tags:
+      - shared
+definitions:
+  github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
+    properties:
+      err: {}
+      errorCode:
+        $ref: '#/definitions/types.ErrorCode'
+      statusCode:
+        type: integer
+    type: object
+  v1handlers.DelegationCheckPublicResponse:
+    properties:
+      code:
+        type: integer
+      data:
+        type: boolean
+    type: object
+  handler.PublicResponse-map_string_string:
+    properties:
+      data:
+        $ref: '#/definitions/map_string_string'
+      pagination:
+        $ref: '#/definitions/handler.paginationResponse'
+    type: object
+  types.ErrorCode:
+    enum:
+    - INTERNAL_SERVICE_ERROR
+    - VALIDATION_ERROR
+    - NOT_FOUND
+    - BAD_REQUEST
+    - FORBIDDEN
+    - UNPROCESSABLE_ENTITY
+    - REQUEST_TIMEOUT
+    type: string
+    x-enum-varnames:
+    - InternalServiceError
+    - ValidationError
+    - NotFound
+    - BadRequest
+    - Forbidden
+    - UnprocessableEntity
+    - RequestTimeout
+  handler.paginationResponse:
+    properties:
+      next_key:
+        type: string
+    type: object
+  map_string_string:
+    additionalProperties:
+      type: string
+    type: object
