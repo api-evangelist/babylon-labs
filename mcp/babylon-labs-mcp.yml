@@ -2,9 +2,9 @@ generated: '2026-07-18'
 method: derived
 status: candidate
 source: openapi/babylon-labs-staking-api-openapi-original.yml
-note: No official hosted/remote MCP server was found for Babylon Labs. This is a candidate
-  tool list derived from the current (v2 + shared) operations of the public Babylon
-  Staking API; it is not published by the provider.
+note: No official hosted/remote MCP server was found for Babylon Labs. This is a candidate tool list derived
+  from the current (v2 + shared) operations of the public Babylon Staking API; it is not published by
+  the provider.
 server:
   name: babylon-labs-staking
   transport: http
@@ -39,3 +39,9 @@ tools:
 - name: check_staker_delegation
   description: Check whether a staker BTC address has an active delegation.
   source_operation: openapi/babylon-labs-staking-api-openapi-original.yml#GET /v1/staker/delegation/check
+deployment:
+  mode: none
+  verified: derived
+  tools: 10
+  checked: '2026-08-12'
+  source: catalog MCP census

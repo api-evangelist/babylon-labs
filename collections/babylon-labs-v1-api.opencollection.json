@@ -1,0 +1,170 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Babylon Staking shared v1 API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "v1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/delegation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/delegation",
+            "params": [
+              {
+                "name": "staking_tx_hash_hex",
+                "value": "",
+                "type": "query",
+                "description": "Staking transaction hash in hex format"
+              }
+            ]
+          },
+          "docs": "[DEPRECATED] Retrieves a delegation by a given transaction hash. Please use /v2/delegation instead."
+        },
+        {
+          "info": {
+            "name": "Get Active Finality Providers (Deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/finality-providers",
+            "params": [
+              {
+                "name": "fp_btc_pk",
+                "value": "",
+                "type": "query",
+                "description": "Public key of the finality provider to fetch"
+              },
+              {
+                "name": "pagination_key",
+                "value": "",
+                "type": "query",
+                "description": "Pagination key to fetch the next page of finality providers"
+              }
+            ]
+          },
+          "docs": "[DEPRECATED] Fetches details of all active finality providers sorted by their active total value locked (ActiveTvl) in descending order. Please use /v2/finality-providers instead."
+        },
+        {
+          "info": {
+            "name": "GET /v1/global-params",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/global-params"
+          },
+          "docs": "[DEPRECATED] Retrieves the global parameters for Babylon, including finality provider details. Please use /v2/network-info instead."
+        },
+        {
+          "info": {
+            "name": "GET /v1/staker/delegations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/staker/delegations",
+            "params": [
+              {
+                "name": "staker_btc_pk",
+                "value": "",
+                "type": "query",
+                "description": "Staker BTC Public Key"
+              },
+              {
+                "name": "pending_action",
+                "value": "",
+                "type": "query",
+                "description": "Only return delegations with pending actions which include active, unbonding, unbonding_requested, unbonded"
+              },
+              {
+                "name": "pagination_key",
+                "value": "",
+                "type": "query",
+                "description": "Pagination key to fetch the next page of delegations"
+              }
+            ]
+          },
+          "docs": "Retrieves phase-1 delegations for a given staker. This endpoint will be deprecated once all phase-1 delegations are either withdrawn or registered into phase-2.\nThis endpoint is only used to show legacy phase-1 delegations for the purpose of unbonding or registering into phase-2."
+        },
+        {
+          "info": {
+            "name": "Get Overall Stats (Deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/stats"
+          },
+          "docs": "[DEPRECATED] Fetches overall stats for babylon staking including tvl, total delegations, active tvl, active delegations and total stakers. Please use /v2/stats instead."
+        },
+        {
+          "info": {
+            "name": "Get Staker Stats (Deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/stats/staker",
+            "params": [
+              {
+                "name": "staker_btc_pk",
+                "value": "",
+                "type": "query",
+                "description": "Public key of the staker to fetch"
+              },
+              {
+                "name": "pagination_key",
+                "value": "",
+                "type": "query",
+                "description": "Pagination key to fetch the next page of top stakers"
+              }
+            ]
+          },
+          "docs": "[DEPRECATED] Fetches staker stats for babylon staking including tvl, total delegations, active tvl and active delegations. Please use /v2/staker/stats instead.\nIf staker_btc_pk query parameter is provided, it will return stats for the specific staker.\nOtherwise, it will return the top stakers ranked by active tvl."
+        },
+        {
+          "info": {
+            "name": "Unbond phase-1 delegation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/unbonding"
+          },
+          "docs": "Unbonds a phase-1 delegation by processing the provided transaction details. This endpoint will be deprecated once all phase-1 delegations are either withdrawn or registered into phase-2.\nThis is an async operation."
+        },
+        {
+          "info": {
+            "name": "Check unbonding eligibility",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/unbonding/eligibility",
+            "params": [
+              {
+                "name": "staking_tx_hash_hex",
+                "value": "",
+                "type": "query",
+                "description": "Staking Transaction Hash Hex"
+              }
+            ]
+          },
+          "docs": "Checks if a delegation identified by its staking transaction hash is eligible for unbonding. This endpoint will be deprecated once all phase-1 delegations are either withdrawn or registered into phase-2."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

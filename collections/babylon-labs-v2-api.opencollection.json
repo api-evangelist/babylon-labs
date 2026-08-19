@@ -1,0 +1,176 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Babylon Staking shared v2 API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "v2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get personalized staking APR",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/apr",
+            "params": [
+              {
+                "name": "satoshis_staked",
+                "value": "",
+                "type": "query",
+                "description": "Total satoshis staked (confirmed + pending)"
+              },
+              {
+                "name": "ubbn_staked",
+                "value": "",
+                "type": "query",
+                "description": "Total ubbn staked (confirmed + pending)"
+              }
+            ]
+          },
+          "docs": "Get personalized staking APR based on user's BTC and BABY stake amounts"
+        },
+        {
+          "info": {
+            "name": "Get a delegation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/delegation",
+            "params": [
+              {
+                "name": "staking_tx_hash_hex",
+                "value": "",
+                "type": "query",
+                "description": "Staking transaction hash in hex format"
+              }
+            ]
+          },
+          "docs": "Retrieves a delegation by a given transaction hash"
+        },
+        {
+          "info": {
+            "name": "Get Delegations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/delegations",
+            "params": [
+              {
+                "name": "staker_pk_hex",
+                "value": "",
+                "type": "query",
+                "description": "Staker public key in hex format. If omitted, babylon_address is used as the main query parameter and state is required."
+              },
+              {
+                "name": "babylon_address",
+                "value": "",
+                "type": "query",
+                "description": "Babylon address. Required if staker_pk_hex is omitted."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "State of delegations (only 'active' is supported). Required if staker_pk_hex is omitted."
+              },
+              {
+                "name": "pagination_key",
+                "value": "",
+                "type": "query",
+                "description": "Pagination key to fetch the next page of delegations"
+              }
+            ]
+          },
+          "docs": "Fetches delegations for babylon staking including tvl, total delegations, active tvl, active delegations and total stakers."
+        },
+        {
+          "info": {
+            "name": "List Finality Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/finality-providers",
+            "params": [
+              {
+                "name": "pagination_key",
+                "value": "",
+                "type": "query",
+                "description": "Pagination key to fetch the next page of finality providers"
+              }
+            ]
+          },
+          "docs": "Fetches finality providers with its stats with pagination support"
+        },
+        {
+          "info": {
+            "name": "GET /v2/network-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/network-info"
+          },
+          "docs": "Get network info, including params"
+        },
+        {
+          "info": {
+            "name": "GET /v2/prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/prices"
+          },
+          "docs": "Get latest prices for all available symbols"
+        },
+        {
+          "info": {
+            "name": "Get Staker Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/staker/stats",
+            "params": [
+              {
+                "name": "staker_pk_hex",
+                "value": "",
+                "type": "query",
+                "description": "Public key of the staker to fetch"
+              },
+              {
+                "name": "babylon_address",
+                "value": "",
+                "type": "query",
+                "description": "Babylon address of the staker to fetch"
+              }
+            ]
+          },
+          "docs": "Fetches staker stats for babylon staking including active tvl,"
+        },
+        {
+          "info": {
+            "name": "GET /v2/stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/stats"
+          },
+          "docs": "Overall system stats including max staking APR (BTC + co-staking)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

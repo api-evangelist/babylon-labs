@@ -1,0 +1,946 @@
+{
+  "item": [
+    {
+      "id": "3d9aaf34-cc1e-4082-b3a9-9e16327ab069",
+      "name": "v1",
+      "description": {
+        "content": "Babylon Phase-1 API endpoints (Deprecated)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7b1acb14-b219-4427-825a-b250adc93522",
+          "name": "[DEPRECATED] Retrieves a delegation by a given transaction hash. Please use /v2/delegation instead.",
+          "request": {
+            "name": "[DEPRECATED] Retrieves a delegation by a given transaction hash. Please use /v2/delegation instead.",
+            "description": {
+              "content": "[DEPRECATED] Retrieves a delegation by a given transaction hash. Please use /v2/delegation instead.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "delegation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "staking_tx_hash_hex",
+                  "value": "<string>",
+                  "description": "(Required) Staking transaction hash in hex format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed6ebab1-e3df-40b2-a17f-7d1cec4c32d0",
+              "name": "Delegation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "delegation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staking_tx_hash_hex",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"finality_provider_pk_hex\": \"string\",\n    \"is_eligible_for_transition\": true,\n    \"is_overflow\": true,\n    \"is_slashed\": true,\n    \"staker_pk_hex\": \"string\",\n    \"staking_tx\": {\n      \"output_index\": 5062,\n      \"start_height\": 3427,\n      \"start_timestamp\": \"string\",\n      \"timelock\": 6689,\n      \"tx_hex\": \"string\"\n    },\n    \"staking_tx_hash_hex\": \"string\",\n    \"staking_value\": 1385,\n    \"state\": \"active\",\n    \"unbonding_tx\": {\n      \"output_index\": 1879,\n      \"start_height\": 4228,\n      \"start_timestamp\": \"string\",\n      \"timelock\": 2583,\n      \"tx_hex\": \"string\"\n    }\n  },\n  \"pagination\": {\n    \"next_key\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35b5f6e9-f100-4dae-8586-b66a11eb77b6",
+              "name": "Error: Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "delegation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staking_tx_hash_hex",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"BAD_REQUEST\",\n  \"statusCode\": 4614\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "73b58b79-8d4a-4c86-9192-3f89c6b68207",
+          "name": "Get Active Finality Providers (Deprecated)",
+          "request": {
+            "name": "Get Active Finality Providers (Deprecated)",
+            "description": {
+              "content": "[DEPRECATED] Fetches details of all active finality providers sorted by their active total value locked (ActiveTvl) in descending order. Please use /v2/finality-providers instead.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "finality-providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fp_btc_pk",
+                  "value": "<string>",
+                  "description": "Public key of the finality provider to fetch"
+                },
+                {
+                  "disabled": false,
+                  "key": "pagination_key",
+                  "value": "<string>",
+                  "description": "Pagination key to fetch the next page of finality providers"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac531b80-adc5-4c9e-a05e-8f7d7cc37de2",
+              "name": "A list of finality providers sorted by ActiveTvl in descending order",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "finality-providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fp_btc_pk",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pagination_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"active_delegations\": 6051,\n      \"active_tvl\": 9938,\n      \"btc_pk\": \"string\",\n      \"commission\": \"string\",\n      \"description\": {\n        \"details\": \"string\",\n        \"identity\": \"string\",\n        \"moniker\": \"string\",\n        \"security_contact\": \"string\",\n        \"website\": \"string\"\n      },\n      \"total_delegations\": 5702,\n      \"total_tvl\": 2511\n    },\n    {\n      \"active_delegations\": 411,\n      \"active_tvl\": 378,\n      \"btc_pk\": \"string\",\n      \"commission\": \"string\",\n      \"description\": {\n        \"details\": \"string\",\n        \"identity\": \"string\",\n        \"moniker\": \"string\",\n        \"security_contact\": \"string\",\n        \"website\": \"string\"\n      },\n      \"total_delegations\": 1731,\n      \"total_tvl\": 8560\n    }\n  ],\n  \"pagination\": {\n    \"next_key\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "342e25ce-3470-497f-b7b9-f5b7a97efa15",
+          "name": "[DEPRECATED] Retrieves the global parameters for Babylon, including finality provider details. Please use /v2/network-info instead.",
+          "request": {
+            "name": "[DEPRECATED] Retrieves the global parameters for Babylon, including finality provider details. Please use /v2/network-info instead.",
+            "description": {
+              "content": "[DEPRECATED] Retrieves the global parameters for Babylon, including finality provider details. Please use /v2/network-info instead.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "global-params"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d010c04d-6b2d-484c-89f9-94dcba1a2133",
+              "name": "Global parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "global-params"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"versions\": [\n      {\n        \"activation_height\": 4068,\n        \"cap_height\": 5315,\n        \"confirmation_depth\": 3739,\n        \"covenant_pks\": [\n          \"string\",\n          \"string\"\n        ],\n        \"covenant_quorum\": 9266,\n        \"max_staking_amount\": 6251,\n        \"max_staking_time\": 4857,\n        \"min_staking_amount\": 4270,\n        \"min_staking_time\": 5041,\n        \"staking_cap\": 2286,\n        \"tag\": \"string\",\n        \"unbonding_fee\": 4219,\n        \"unbonding_time\": 7227,\n        \"version\": 5035\n      },\n      {\n        \"activation_height\": 3320,\n        \"cap_height\": 5015,\n        \"confirmation_depth\": 4832,\n        \"covenant_pks\": [\n          \"string\",\n          \"string\"\n        ],\n        \"covenant_quorum\": 2202,\n        \"max_staking_amount\": 28,\n        \"max_staking_time\": 1093,\n        \"min_staking_amount\": 5094,\n        \"min_staking_time\": 7422,\n        \"staking_cap\": 6518,\n        \"tag\": \"string\",\n        \"unbonding_fee\": 3334,\n        \"unbonding_time\": 2327,\n        \"version\": 5368\n      }\n    ]\n  },\n  \"pagination\": {\n    \"next_key\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad8147fc-78ab-43cd-9574-6543ad34c635",
+          "name": "Retrieves phase-1 delegations for a given staker. This endpoint will be deprecated once all phase-1 delegations are either withdrawn or registered into phase-2.\nThis endpoint is only used to show legacy phase-1 delegations for the purpose of unbonding or registering into phase-2.",
+          "request": {
+            "name": "Retrieves phase-1 delegations for a given staker. This endpoint will be deprecated once all phase-1 delegations are either withdrawn or registered into phase-2.\nThis endpoint is only used to show legacy phase-1 delegations for the purpose of unbonding or registering into phase-2.",
+            "description": {
+              "content": "Retrieves phase-1 delegations for a given staker. This endpoint will be deprecated once all phase-1 delegations are either withdrawn or registered into phase-2.\nThis endpoint is only used to show legacy phase-1 delegations for the purpose of unbonding or registering into phase-2.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "staker",
+                "delegations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "staker_btc_pk",
+                  "value": "<string>",
+                  "description": "(Required) Staker BTC Public Key"
+                },
+                {
+                  "disabled": false,
+                  "key": "pending_action",
+                  "value": "<boolean>",
+                  "description": "Only return delegations with pending actions which include active, unbonding, unbonding_requested, unbonded"
+                },
+                {
+                  "disabled": false,
+                  "key": "pagination_key",
+                  "value": "<string>",
+                  "description": "Pagination key to fetch the next page of delegations"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da7127c4-0bef-4b8d-bd11-3eec1658dd39",
+              "name": "List of delegations and pagination token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "staker",
+                    "delegations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staker_btc_pk",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pending_action",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "pagination_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"finality_provider_pk_hex\": \"string\",\n      \"is_eligible_for_transition\": false,\n      \"is_overflow\": false,\n      \"is_slashed\": false,\n      \"staker_pk_hex\": \"string\",\n      \"staking_tx\": {\n        \"output_index\": 5283,\n        \"start_height\": 4708,\n        \"start_timestamp\": \"string\",\n        \"timelock\": 7104,\n        \"tx_hex\": \"string\"\n      },\n      \"staking_tx_hash_hex\": \"string\",\n      \"staking_value\": 2729,\n      \"state\": \"withdrawn\",\n      \"unbonding_tx\": {\n        \"output_index\": 5043,\n        \"start_height\": 3073,\n        \"start_timestamp\": \"string\",\n        \"timelock\": 727,\n        \"tx_hex\": \"string\"\n      }\n    },\n    {\n      \"finality_provider_pk_hex\": \"string\",\n      \"is_eligible_for_transition\": true,\n      \"is_overflow\": false,\n      \"is_slashed\": true,\n      \"staker_pk_hex\": \"string\",\n      \"staking_tx\": {\n        \"output_index\": 3075,\n        \"start_height\": 3952,\n        \"start_timestamp\": \"string\",\n        \"timelock\": 6278,\n        \"tx_hex\": \"string\"\n      },\n      \"staking_tx_hash_hex\": \"string\",\n      \"staking_value\": 6005,\n      \"state\": \"unbonding\",\n      \"unbonding_tx\": {\n        \"output_index\": 9072,\n        \"start_height\": 5130,\n        \"start_timestamp\": \"string\",\n        \"timelock\": 5639,\n        \"tx_hex\": \"string\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"next_key\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10ff5220-2b5c-4765-8003-0fb0ae10131d",
+              "name": "Error: Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "staker",
+                    "delegations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staker_btc_pk",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pending_action",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "pagination_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"BAD_REQUEST\",\n  \"statusCode\": 4614\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c885eef-77e7-4e16-890d-e4a7d8a03a4f",
+          "name": "Get Overall Stats (Deprecated)",
+          "request": {
+            "name": "Get Overall Stats (Deprecated)",
+            "description": {
+              "content": "[DEPRECATED] Fetches overall stats for babylon staking including tvl, total delegations, active tvl, active delegations and total stakers. Please use /v2/stats instead.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a91eea09-a88d-41ac-81aa-978210569980",
+              "name": "Overall stats for babylon staking",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"active_delegations\": 6940,\n    \"active_tvl\": 8623,\n    \"btc_price_usd\": 403.26554868296836,\n    \"pending_tvl\": 1859,\n    \"total_delegations\": 9969,\n    \"total_stakers\": 7231,\n    \"total_tvl\": 228,\n    \"unconfirmed_tvl\": 6744\n  },\n  \"pagination\": {\n    \"next_key\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df6e763b-ca29-417f-b1d3-fa6d866335d8",
+          "name": "Get Staker Stats (Deprecated)",
+          "request": {
+            "name": "Get Staker Stats (Deprecated)",
+            "description": {
+              "content": "[DEPRECATED] Fetches staker stats for babylon staking including tvl, total delegations, active tvl and active delegations. Please use /v2/staker/stats instead.\nIf staker_btc_pk query parameter is provided, it will return stats for the specific staker.\nOtherwise, it will return the top stakers ranked by active tvl.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "stats",
+                "staker"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "staker_btc_pk",
+                  "value": "<string>",
+                  "description": "Public key of the staker to fetch"
+                },
+                {
+                  "disabled": false,
+                  "key": "pagination_key",
+                  "value": "<string>",
+                  "description": "Pagination key to fetch the next page of top stakers"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fa4c1191-07fa-41bc-932d-77336d3f66bd",
+              "name": "List of top stakers by active tvl",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "stats",
+                    "staker"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staker_btc_pk",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pagination_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"active_delegations\": 4116,\n      \"active_tvl\": 4155,\n      \"staker_pk_hex\": \"string\",\n      \"total_delegations\": 5151,\n      \"total_tvl\": 6076\n    },\n    {\n      \"active_delegations\": 3339,\n      \"active_tvl\": 9438,\n      \"staker_pk_hex\": \"string\",\n      \"total_delegations\": 5086,\n      \"total_tvl\": 5173\n    }\n  ],\n  \"pagination\": {\n    \"next_key\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "160645c1-8b55-44f6-8e82-bf1a9b72c819",
+              "name": "Error: Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "stats",
+                    "staker"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staker_btc_pk",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pagination_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"BAD_REQUEST\",\n  \"statusCode\": 4614\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a930475-6b4e-4faa-8c41-ced4c782e839",
+          "name": "Unbond phase-1 delegation",
+          "request": {
+            "name": "Unbond phase-1 delegation",
+            "description": {
+              "content": "Unbonds a phase-1 delegation by processing the provided transaction details. This endpoint will be deprecated once all phase-1 delegations are either withdrawn or registered into phase-2.\nThis is an async operation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "unbonding"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"staker_signed_signature_hex\": \"<string>\",\n  \"staking_tx_hash_hex\": \"<string>\",\n  \"unbonding_tx_hash_hex\": \"<string>\",\n  \"unbonding_tx_hex\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9f07df7f-93b6-4c8a-86d5-1fc941388b73",
+              "name": "Request accepted and will be processed asynchronously",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "unbonding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"staker_signed_signature_hex\": \"<string>\",\n  \"staking_tx_hash_hex\": \"<string>\",\n  \"unbonding_tx_hash_hex\": \"<string>\",\n  \"unbonding_tx_hex\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cce88e95-69f3-4ebc-a02e-3e37eec31a92",
+              "name": "Invalid request payload",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "unbonding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"staker_signed_signature_hex\": \"<string>\",\n  \"staking_tx_hash_hex\": \"<string>\",\n  \"unbonding_tx_hash_hex\": \"<string>\",\n  \"unbonding_tx_hex\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"BAD_REQUEST\",\n  \"statusCode\": 4614\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53bc010f-fd82-4b16-af44-4ee5a5d61f0f",
+          "name": "Check unbonding eligibility",
+          "request": {
+            "name": "Check unbonding eligibility",
+            "description": {
+              "content": "Checks if a delegation identified by its staking transaction hash is eligible for unbonding. This endpoint will be deprecated once all phase-1 delegations are either withdrawn or registered into phase-2.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "unbonding",
+                "eligibility"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "staking_tx_hash_hex",
+                  "value": "<string>",
+                  "description": "(Required) Staking Transaction Hash Hex"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "673e514a-1145-495d-886c-5fff27abaae1",
+              "name": "The delegation is eligible for unbonding",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "unbonding",
+                    "eligibility"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staking_tx_hash_hex",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5305db28-3915-48b4-93c3-dfdda30d3371",
+              "name": "Missing or invalid 'staking_tx_hash_hex' query parameter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "unbonding",
+                    "eligibility"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staking_tx_hash_hex",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"BAD_REQUEST\",\n  \"statusCode\": 4614\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "16819eff-d68c-49be-a447-6893ca58417a",
+    "name": "Babylon Staking shared v1 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Babylon Staking API offers information about the state of the Babylon BTC Staking system.\nYour access and use is governed by the API Access License linked to below.\n\nContact Support:\n Email: contact@babylonlabs.io",
+      "type": "text/plain"
+    }
+  }
+}

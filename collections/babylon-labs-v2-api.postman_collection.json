@@ -1,0 +1,1416 @@
+{
+  "item": [
+    {
+      "id": "d00f3fc9-1795-4462-9211-2d689caba223",
+      "name": "v2",
+      "description": {
+        "content": "Babylon Phase-2 API endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "308d99ad-e951-4f9e-a45b-752e31ed43bc",
+          "name": "Get personalized staking APR",
+          "request": {
+            "name": "Get personalized staking APR",
+            "description": {
+              "content": "Get personalized staking APR based on user's BTC and BABY stake amounts",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "apr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "satoshis_staked",
+                  "value": "0",
+                  "description": "Total satoshis staked (confirmed + pending)"
+                },
+                {
+                  "disabled": false,
+                  "key": "ubbn_staked",
+                  "value": "0",
+                  "description": "Total ubbn staked (confirmed + pending)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "558964a0-c8c1-4c1a-841b-e19270ca605d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "apr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "satoshis_staked",
+                      "value": "0"
+                    },
+                    {
+                      "key": "ubbn_staked",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"additional_baby_needed_for_boost\": 8891.678863487801,\n    \"boost\": {\n      \"baby_staking_apr\": 24.497504808935755,\n      \"btc_staking_apr\": 8821.233384467909,\n      \"co_staking_apr\": 4818.527971705456,\n      \"total_apr\": 5985.5402703641685\n    },\n    \"current\": {\n      \"baby_staking_apr\": 8737.422847338692,\n      \"btc_staking_apr\": 8767.729201247743,\n      \"co_staking_apr\": 4589.221195346308,\n      \"total_apr\": 1074.072863885921\n    }\n  },\n  \"pagination\": {\n    \"next_key\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a101010-4ffb-44c5-98a0-7d45406709f5",
+              "name": "Error: Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "apr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "satoshis_staked",
+                      "value": "0"
+                    },
+                    {
+                      "key": "ubbn_staked",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"FORBIDDEN\",\n  \"statusCode\": 1687\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81b08769-b8bb-463f-8527-8b3b8cef600b",
+          "name": "Get a delegation",
+          "request": {
+            "name": "Get a delegation",
+            "description": {
+              "content": "Retrieves a delegation by a given transaction hash",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "delegation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "staking_tx_hash_hex",
+                  "value": "<string>",
+                  "description": "(Required) Staking transaction hash in hex format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "043715f5-5b5d-40c4-b02e-cf30af6e0b58",
+              "name": "Staker delegation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "delegation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staking_tx_hash_hex",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"delegation_staking\": {\n      \"bbn_inception_height\": 6483,\n      \"bbn_inception_time\": \"string\",\n      \"end_height\": 6656,\n      \"slashing\": {\n        \"slashing_tx_hex\": \"string\",\n        \"spending_height\": 3512\n      },\n      \"staking_amount\": 1186,\n      \"staking_output_idx\": 7383,\n      \"staking_timelock\": 4534,\n      \"staking_tx_hash_hex\": \"string\",\n      \"staking_tx_hex\": \"string\",\n      \"start_height\": 2795\n    },\n    \"delegation_unbonding\": {\n      \"covenant_unbonding_signatures\": [\n        {\n          \"covenant_btc_pk_hex\": \"string\",\n          \"signature_hex\": \"string\",\n          \"stake_expansion_signature_hex\": \"string\"\n        },\n        {\n          \"covenant_btc_pk_hex\": \"string\",\n          \"signature_hex\": \"string\",\n          \"stake_expansion_signature_hex\": \"string\"\n        }\n      ],\n      \"slashing\": {\n        \"spending_height\": 7647,\n        \"unbonding_slashing_tx_hex\": \"string\"\n      },\n      \"unbonding_timelock\": 9289,\n      \"unbonding_tx\": \"string\"\n    },\n    \"finality_provider_btc_pks_hex\": [\n      \"string\",\n      \"string\"\n    ],\n    \"params_version\": 1140,\n    \"previous_staking_tx_hash_hex\": \"string\",\n    \"staker_btc_pk_hex\": \"string\",\n    \"state\": \"TIMELOCK_WITHDRAWN\",\n    \"withdrawal_info\": {\n      \"tx_hash\": \"string\"\n    }\n  },\n  \"pagination\": {\n    \"next_key\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27577760-4bf1-4193-bbc1-d1ca5241ab76",
+              "name": "Error: Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "delegation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staking_tx_hash_hex",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"FORBIDDEN\",\n  \"statusCode\": 1687\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc233b1e-1f0d-4da4-ab32-99aa5f29b237",
+              "name": "Error: Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "delegation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staking_tx_hash_hex",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"FORBIDDEN\",\n  \"statusCode\": 1687\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bdd569b6-c959-4d62-873d-e9550c34abd8",
+              "name": "Error: Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "delegation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staking_tx_hash_hex",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"FORBIDDEN\",\n  \"statusCode\": 1687\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "70e902b9-76e1-43fa-ab19-c9e152464df1",
+          "name": "Get Delegations",
+          "request": {
+            "name": "Get Delegations",
+            "description": {
+              "content": "Fetches delegations for babylon staking including tvl, total delegations, active tvl, active delegations and total stakers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "delegations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "staker_pk_hex",
+                  "value": "<string>",
+                  "description": "Staker public key in hex format. If omitted, babylon_address is used as the main query parameter and state is required."
+                },
+                {
+                  "disabled": false,
+                  "key": "babylon_address",
+                  "value": "<string>",
+                  "description": "Babylon address. Required if staker_pk_hex is omitted."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "State of delegations (only 'active' is supported). Required if staker_pk_hex is omitted."
+                },
+                {
+                  "disabled": false,
+                  "key": "pagination_key",
+                  "value": "<string>",
+                  "description": "Pagination key to fetch the next page of delegations"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1bdcf5b-ddb8-4ad1-bbf5-b8a88b2d47c8",
+              "name": "List of staker delegations and pagination token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "delegations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staker_pk_hex",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "babylon_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pagination_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"delegation_staking\": {\n        \"bbn_inception_height\": 7949,\n        \"bbn_inception_time\": \"string\",\n        \"end_height\": 9696,\n        \"slashing\": {\n          \"slashing_tx_hex\": \"string\",\n          \"spending_height\": 3035\n        },\n        \"staking_amount\": 4223,\n        \"staking_output_idx\": 9139,\n        \"staking_timelock\": 9961,\n        \"staking_tx_hash_hex\": \"string\",\n        \"staking_tx_hex\": \"string\",\n        \"start_height\": 3907\n      },\n      \"delegation_unbonding\": {\n        \"covenant_unbonding_signatures\": [\n          {\n            \"covenant_btc_pk_hex\": \"string\",\n            \"signature_hex\": \"string\",\n            \"stake_expansion_signature_hex\": \"string\"\n          },\n          {\n            \"covenant_btc_pk_hex\": \"string\",\n            \"signature_hex\": \"string\",\n            \"stake_expansion_signature_hex\": \"string\"\n          }\n        ],\n        \"slashing\": {\n          \"spending_height\": 8032,\n          \"unbonding_slashing_tx_hex\": \"string\"\n        },\n        \"unbonding_timelock\": 5751,\n        \"unbonding_tx\": \"string\"\n      },\n      \"finality_provider_btc_pks_hex\": [\n        \"string\",\n        \"string\"\n      ],\n      \"params_version\": 414,\n      \"previous_staking_tx_hash_hex\": \"string\",\n      \"staker_btc_pk_hex\": \"string\",\n      \"state\": \"EARLY_UNBONDING_SLASHING_WITHDRAWABLE\",\n      \"withdrawal_info\": {\n        \"tx_hash\": \"string\"\n      }\n    },\n    {\n      \"delegation_staking\": {\n        \"bbn_inception_height\": 9378,\n        \"bbn_inception_time\": \"string\",\n        \"end_height\": 1996,\n        \"slashing\": {\n          \"slashing_tx_hex\": \"string\",\n          \"spending_height\": 6386\n        },\n        \"staking_amount\": 615,\n        \"staking_output_idx\": 3983,\n        \"staking_timelock\": 5930,\n        \"staking_tx_hash_hex\": \"string\",\n        \"staking_tx_hex\": \"string\",\n        \"start_height\": 8213\n      },\n      \"delegation_unbonding\": {\n        \"covenant_unbonding_signatures\": [\n          {\n            \"covenant_btc_pk_hex\": \"string\",\n            \"signature_hex\": \"string\",\n            \"stake_expansion_signature_hex\": \"string\"\n          },\n          {\n            \"covenant_btc_pk_hex\": \"string\",\n            \"signature_hex\": \"string\",\n            \"stake_expansion_signature_hex\": \"string\"\n          }\n        ],\n        \"slashing\": {\n          \"spending_height\": 4272,\n          \"unbonding_slashing_tx_hex\": \"string\"\n        },\n        \"unbonding_timelock\": 5693,\n        \"unbonding_tx\": \"string\"\n      },\n      \"finality_provider_btc_pks_hex\": [\n        \"string\",\n        \"string\"\n      ],\n      \"params_version\": 7960,\n      \"previous_staking_tx_hash_hex\": \"string\",\n      \"staker_btc_pk_hex\": \"string\",\n      \"state\": \"EARLY_UNBONDING_SLASHING_WITHDRAWN\",\n      \"withdrawal_info\": {\n        \"tx_hash\": \"string\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"next_key\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10e1eb3f-0891-47de-a4b6-0c1eb28c9aba",
+              "name": "Error: Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "delegations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staker_pk_hex",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "babylon_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pagination_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"FORBIDDEN\",\n  \"statusCode\": 1687\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7fe63e0d-e085-47c8-a15b-fa22dcb217a2",
+              "name": "Error: Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "delegations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staker_pk_hex",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "babylon_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pagination_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"FORBIDDEN\",\n  \"statusCode\": 1687\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8b60e19-8f95-43ef-9f05-3b6960874178",
+              "name": "Error: Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "delegations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staker_pk_hex",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "babylon_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pagination_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"FORBIDDEN\",\n  \"statusCode\": 1687\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab5bda19-8a3a-40c2-b11a-22885f0b2cda",
+          "name": "List Finality Providers",
+          "request": {
+            "name": "List Finality Providers",
+            "description": {
+              "content": "Fetches finality providers with its stats with pagination support",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "finality-providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pagination_key",
+                  "value": "<string>",
+                  "description": "Pagination key to fetch the next page of finality providers"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "374f33bb-abda-40a1-8bee-e96cec4fbbf7",
+              "name": "List of finality providers with its stats",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "finality-providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagination_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"active_delegations\": 1697,\n      \"active_tvl\": 7610,\n      \"btc_pk\": \"string\",\n      \"commission\": \"string\",\n      \"description\": {\n        \"details\": \"string\",\n        \"identity\": \"string\",\n        \"moniker\": \"string\",\n        \"security_contact\": \"string\",\n        \"website\": \"string\"\n      },\n      \"logo_url\": \"string\",\n      \"state\": \"active\",\n      \"type\": \"string\"\n    },\n    {\n      \"active_delegations\": 3119,\n      \"active_tvl\": 5832,\n      \"btc_pk\": \"string\",\n      \"commission\": \"string\",\n      \"description\": {\n        \"details\": \"string\",\n        \"identity\": \"string\",\n        \"moniker\": \"string\",\n        \"security_contact\": \"string\",\n        \"website\": \"string\"\n      },\n      \"logo_url\": \"string\",\n      \"state\": \"active\",\n      \"type\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"next_key\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5fbfa5a-1cd2-410b-afbb-db3eaa7e283e",
+              "name": "Invalid pagination token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "finality-providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagination_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"FORBIDDEN\",\n  \"statusCode\": 1687\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "176d2fe6-85f0-424f-9735-d69f1f4fd20e",
+              "name": "No finality providers found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "finality-providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagination_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"FORBIDDEN\",\n  \"statusCode\": 1687\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce5f4581-6460-407a-a205-62e459e426e1",
+              "name": "Internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "finality-providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagination_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"FORBIDDEN\",\n  \"statusCode\": 1687\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e9644bb-a18a-4635-ae6a-fc9badf1c585",
+          "name": "Get network info, including params",
+          "request": {
+            "name": "Get network info, including params",
+            "description": {
+              "content": "Get network info, including params",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "network-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "531b368d-0caf-44a5-b2a8-2ca4eb62f9b0",
+              "name": "Network info",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "network-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"network_upgrade\": {\n    \"pop\": [\n      {\n        \"height\": 270,\n        \"version\": 5398\n      },\n      {\n        \"height\": 8650,\n        \"version\": 4230\n      }\n    ]\n  },\n  \"params\": {\n    \"bbn\": [\n      {\n        \"allow_list_expiration_height\": 2276,\n        \"btc_activation_height\": 1411,\n        \"covenant_pks\": [\n          \"string\",\n          \"string\"\n        ],\n        \"covenant_quorum\": 228,\n        \"delegation_creation_base_gas_fee\": 2459,\n        \"max_staking_time_blocks\": 190,\n        \"max_staking_value_sat\": 9824,\n        \"min_commission_rate\": \"string\",\n        \"min_slashing_tx_fee_sat\": 7484,\n        \"min_staking_time_blocks\": 761,\n        \"min_staking_value_sat\": 9496,\n        \"slashing_pk_script\": \"string\",\n        \"slashing_rate\": \"string\",\n        \"unbonding_fee_sat\": 6072,\n        \"unbonding_time_blocks\": 3041,\n        \"version\": 5379\n      },\n      {\n        \"allow_list_expiration_height\": 2026,\n        \"btc_activation_height\": 9269,\n        \"covenant_pks\": [\n          \"string\",\n          \"string\"\n        ],\n        \"covenant_quorum\": 7911,\n        \"delegation_creation_base_gas_fee\": 4426,\n        \"max_staking_time_blocks\": 5694,\n        \"max_staking_value_sat\": 737,\n        \"min_commission_rate\": \"string\",\n        \"min_slashing_tx_fee_sat\": 4279,\n        \"min_staking_time_blocks\": 3650,\n        \"min_staking_value_sat\": 8637,\n        \"slashing_pk_script\": \"string\",\n        \"slashing_rate\": \"string\",\n        \"unbonding_fee_sat\": 4192,\n        \"unbonding_time_blocks\": 408,\n        \"version\": 6876\n      }\n    ],\n    \"btc\": [\n      {\n        \"btc_confirmation_depth\": 1372,\n        \"checkpoint_finalization_timeout\": 7848,\n        \"version\": 692\n      },\n      {\n        \"btc_confirmation_depth\": 5648,\n        \"checkpoint_finalization_timeout\": 33,\n        \"version\": 8039\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "117f3ef0-a999-4f4b-abe4-b5d3b9acafe6",
+              "name": "Error: Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "network-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"FORBIDDEN\",\n  \"statusCode\": 1687\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c03adc5-6f57-431c-8169-fb620cee2772",
+          "name": "Get latest prices for all available symbols",
+          "request": {
+            "name": "Get latest prices for all available symbols",
+            "description": {
+              "content": "Get latest prices for all available symbols",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "prices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dce811f5-f2b3-4b2e-9f36-9da13b518ea5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "prices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"key_0\": 4669.15988720728\n  },\n  \"pagination\": {\n    \"next_key\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "edee09d3-5e88-446a-bbcf-7ad72190fe24",
+              "name": "Error: Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "prices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"FORBIDDEN\",\n  \"statusCode\": 1687\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49453caa-c943-47f7-8dcf-28bfaaf4ad0d",
+          "name": "Get Staker Stats",
+          "request": {
+            "name": "Get Staker Stats",
+            "description": {
+              "content": "Fetches staker stats for babylon staking including active tvl,",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "staker",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "staker_pk_hex",
+                  "value": "<string>",
+                  "description": "(Required) Public key of the staker to fetch"
+                },
+                {
+                  "disabled": false,
+                  "key": "babylon_address",
+                  "value": "<string>",
+                  "description": "Babylon address of the staker to fetch"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60a9d98a-ea2c-4680-8961-4fe17a366b17",
+              "name": "Staker stats",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "staker",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staker_pk_hex",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "babylon_address",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"active_delegations\": 9017,\n    \"active_tvl\": 4604,\n    \"slashed_delegations\": 4843,\n    \"slashed_tvl\": 7084,\n    \"unbonding_delegations\": 9001,\n    \"unbonding_tvl\": 4294,\n    \"withdrawable_delegations\": 1683,\n    \"withdrawable_tvl\": 8499\n  },\n  \"pagination\": {\n    \"next_key\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee247c31-059a-4e74-babb-7667ac03bad3",
+              "name": "Error: Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "staker",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staker_pk_hex",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "babylon_address",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"FORBIDDEN\",\n  \"statusCode\": 1687\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7c1d2ad-a6ba-4307-a769-d2bc1e7ecccf",
+              "name": "Error: Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "staker",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staker_pk_hex",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "babylon_address",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"FORBIDDEN\",\n  \"statusCode\": 1687\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5da14e3-7840-4e4e-b635-0d4d579538df",
+              "name": "Error: Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "staker",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "staker_pk_hex",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "babylon_address",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"FORBIDDEN\",\n  \"statusCode\": 1687\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44e8fee0-562f-47f4-8415-ce18f9c2ac28",
+          "name": "Overall system stats including max staking APR (BTC + co-staking)",
+          "request": {
+            "name": "Overall system stats including max staking APR (BTC + co-staking)",
+            "description": {
+              "content": "Overall system stats including max staking APR (BTC + co-staking)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1b96c7cb-5435-4185-8ed8-53931b858f5a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"active_delegations\": 7324,\n    \"active_finality_providers\": 4918,\n    \"active_tvl\": 6773,\n    \"btc_staking_apr\": 2632.944060271518,\n    \"max_staking_apr\": 6656.626957739372,\n    \"total_active_delegations\": 4390,\n    \"total_active_tvl\": 9686,\n    \"total_finality_providers\": 6570\n  },\n  \"pagination\": {\n    \"next_key\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce3a9374-e920-4e21-91ca-47fc5012d146",
+              "name": "Error: Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"err\": \"\",\n  \"errorCode\": \"FORBIDDEN\",\n  \"statusCode\": 1687\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6ca5d172-72a4-4dde-adc1-65e65720499e",
+    "name": "Babylon Staking shared v2 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Babylon Staking API offers information about the state of the Babylon BTC Staking system.\nYour access and use is governed by the API Access License linked to below.\n\nContact Support:\n Email: contact@babylonlabs.io",
+      "type": "text/plain"
+    }
+  }
+}

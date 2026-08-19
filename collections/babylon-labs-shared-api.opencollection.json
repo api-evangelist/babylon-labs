@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Babylon Staking shared API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "shared",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Health check endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/healthcheck"
+          },
+          "docs": "Health check the service, including ping database connection"
+        },
+        {
+          "info": {
+            "name": "GET /v1/staker/delegation/check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/staker/delegation/check",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Staker BTC address in Taproot/Native Segwit format"
+              },
+              {
+                "name": "timeframe",
+                "value": "",
+                "type": "query",
+                "description": "Check if the delegation is active within the provided timeframe"
+              }
+            ]
+          },
+          "docs": "Check if a staker has an active delegation by the staker BTC address (Taproot or Native Segwit).\nOptionally, you can provide a timeframe to check if the delegation is active within the provided timeframe\nThe available timeframe is \"today\" which checks after UTC 12AM of the current day"
+        },
+        {
+          "info": {
+            "name": "Get stakers' public keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/staker/pubkey-lookup",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "List of BTC addresses to look up (up to 10), currently only supports Taproot and Native Segwit addresses"
+              }
+            ]
+          },
+          "docs": "Retrieves public keys for the given BTC addresses. This endpoint\nonly returns public keys for addresses that have associated delegations in\nthe system. If an address has no associated delegation, it will not be\nincluded in the response. Supports both Taproot and Native Segwit addresses."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
