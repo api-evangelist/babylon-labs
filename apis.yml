@@ -42,6 +42,16 @@ tags:
 - Proof of Stake
 - DeFi
 - Staking
+tags_raw:
+- Company
+- Crypto Defi
+- Bitcoin
+- Bitcoin Staking
+- Blockchain
+- Cosmos
+- Proof of Stake
+- DeFi
+- Staking
 - API
 apis:
 - aid: babylon-labs:babylon-labs-shared-api
@@ -50,6 +60,8 @@ apis:
   humanURL: https://docs.babylonlabs.io/developers/
   baseURL: https://staking-api.babylonlabs.io
   tags:
+  - Shared
+  tags_raw:
   - shared
   properties:
   - type: OpenAPI
@@ -78,6 +90,8 @@ apis:
   humanURL: https://docs.babylonlabs.io/developers/
   baseURL: https://staking-api.babylonlabs.io
   tags:
+  - V2
+  tags_raw:
   - v2
   properties:
   - type: OpenAPI
