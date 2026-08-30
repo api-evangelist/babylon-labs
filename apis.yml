@@ -72,7 +72,7 @@ apis:
   humanURL: https://docs.babylonlabs.io/developers/
   baseURL: https://staking-api.babylonlabs.io
   tags:
-  - Shared
+  - shared
   tags_raw:
   - shared
   properties:
