@@ -1,0 +1,202 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: contact@babylonlabs.io
+  description: 'The Babylon Staking API offers information about the state of the Babylon BTC Staking system.
+
+    Your access and use is governed by the API Access License linked to below.'
+  license:
+    name: API Access License
+    url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
+  title: Babylon Staking Finality Providers API
+  version: '2.0'
+tags:
+- name: Finality Providers
+paths:
+  /v1/finality-providers:
+    get:
+      deprecated: true
+      description: '[DEPRECATED] Fetches details of all active finality providers sorted by their active total value locked (ActiveTvl) in descending order. Please use /v2/finality-providers instead.'
+      parameters:
+      - description: Public key of the finality provider to fetch
+        in: query
+        name: fp_btc_pk
+        schema:
+          type: string
+      - description: Pagination key to fetch the next page of finality providers
+        in: query
+        name: pagination_key
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of finality providers sorted by ActiveTvl in descending order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.PublicResponse-array_v1service_FpDetailsPublic'
+      summary: Get Active Finality Providers (Deprecated)
+      tags:
+      - Finality Providers
+      operationId: getV1FinalityProviders
+      x-operation-id-source: derived
+  /v2/finality-providers:
+    get:
+      description: Fetches finality providers with its stats with pagination support
+      parameters:
+      - description: Pagination key to fetch the next page of finality providers
+        in: query
+        name: pagination_key
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of finality providers with its stats
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.PublicResponse-array_v2service_FinalityProviderPublic'
+        '400':
+          description: Invalid pagination token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error'
+        '404':
+          description: No finality providers found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error'
+        '500':
+          description: Internal server error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error'
+      summary: List Finality Providers
+      tags:
+      - Finality Providers
+      operationId: getV2FinalityProviders
+      x-operation-id-source: derived
+components:
+  schemas:
+    types.FinalityProviderDescription:
+      properties:
+        details:
+          type: string
+        identity:
+          type: string
+        moniker:
+          type: string
+        security_contact:
+          type: string
+        website:
+          type: string
+      type: object
+    v1service.FpDescriptionPublic:
+      properties:
+        details:
+          type: string
+        identity:
+          type: string
+        moniker:
+          type: string
+        security_contact:
+          type: string
+        website:
+          type: string
+      type: object
+    types.ErrorCode:
+      enum:
+      - INTERNAL_SERVICE_ERROR
+      - VALIDATION_ERROR
+      - NOT_FOUND
+      - BAD_REQUEST
+      - FORBIDDEN
+      - UNPROCESSABLE_ENTITY
+      - REQUEST_TIMEOUT
+      type: string
+      x-enum-varnames:
+      - InternalServiceError
+      - ValidationError
+      - NotFound
+      - BadRequest
+      - Forbidden
+      - UnprocessableEntity
+      - RequestTimeout
+    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
+      properties:
+        err: {}
+        errorCode:
+          $ref: '#/components/schemas/types.ErrorCode'
+        statusCode:
+          type: integer
+      type: object
+    handler.PublicResponse-array_v1service_FpDetailsPublic:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/v1service.FpDetailsPublic'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
+    handler.PublicResponse-array_v2service_FinalityProviderPublic:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/v2service.FinalityProviderPublic'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
+    handler.paginationResponse:
+      properties:
+        next_key:
+          type: string
+      type: object
+    v2service.FinalityProviderPublic:
+      properties:
+        active_delegations:
+          type: integer
+        active_tvl:
+          type: integer
+        btc_pk:
+          type: string
+        commission:
+          type: string
+        description:
+          $ref: '#/components/schemas/types.FinalityProviderDescription'
+        logo_url:
+          type: string
+        state:
+          $ref: '#/components/schemas/types.FinalityProviderQueryingState'
+        type:
+          type: string
+      type: object
+    v1service.FpDetailsPublic:
+      properties:
+        active_delegations:
+          type: integer
+        active_tvl:
+          type: integer
+        btc_pk:
+          type: string
+        commission:
+          type: string
+        description:
+          $ref: '#/components/schemas/v1service.FpDescriptionPublic'
+        total_delegations:
+          type: integer
+        total_tvl:
+          type: integer
+      type: object
+    types.FinalityProviderQueryingState:
+      enum:
+      - active
+      - standby
+      type: string
+      x-enum-varnames:
+      - FinalityProviderStateActive
+      - FinalityProviderStateStandby

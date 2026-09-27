@@ -1,0 +1,104 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: contact@babylonlabs.io
+  description: 'The Babylon Staking API offers information about the state of the Babylon BTC Staking system.
+
+    Your access and use is governed by the API Access License linked to below.'
+  license:
+    name: API Access License
+    url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
+  title: Babylon Staking Unbonding API
+  version: '2.0'
+tags:
+- name: Unbonding
+paths:
+  /v1/unbonding:
+    post:
+      description: 'Unbonds a phase-1 delegation by processing the provided transaction details. This endpoint will be deprecated once all phase-1 delegations are either withdrawn or registered into phase-2.
+
+        This is an async operation.'
+      responses:
+        '202':
+          description: Request accepted and will be processed asynchronously
+        '400':
+          description: Invalid request payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error'
+      summary: Unbond phase-1 delegation
+      tags:
+      - Unbonding
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1handlers.UnbondDelegationRequestPayload'
+        description: Unbonding Request Payload
+        required: true
+      operationId: postV1Unbonding
+      x-operation-id-source: derived
+  /v1/unbonding/eligibility:
+    get:
+      description: Checks if a delegation identified by its staking transaction hash is eligible for unbonding. This endpoint will be deprecated once all phase-1 delegations are either withdrawn or registered into phase-2.
+      parameters:
+      - description: Staking Transaction Hash Hex
+        in: query
+        name: staking_tx_hash_hex
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The delegation is eligible for unbonding
+        '400':
+          description: Missing or invalid 'staking_tx_hash_hex' query parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error'
+      summary: Check unbonding eligibility
+      tags:
+      - Unbonding
+      operationId: getV1UnbondingEligibility
+      x-operation-id-source: derived
+components:
+  schemas:
+    types.ErrorCode:
+      enum:
+      - INTERNAL_SERVICE_ERROR
+      - VALIDATION_ERROR
+      - NOT_FOUND
+      - BAD_REQUEST
+      - FORBIDDEN
+      - UNPROCESSABLE_ENTITY
+      - REQUEST_TIMEOUT
+      type: string
+      x-enum-varnames:
+      - InternalServiceError
+      - ValidationError
+      - NotFound
+      - BadRequest
+      - Forbidden
+      - UnprocessableEntity
+      - RequestTimeout
+    v1handlers.UnbondDelegationRequestPayload:
+      properties:
+        staker_signed_signature_hex:
+          type: string
+        staking_tx_hash_hex:
+          type: string
+        unbonding_tx_hash_hex:
+          type: string
+        unbonding_tx_hex:
+          type: string
+      type: object
+    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
+      properties:
+        err: {}
+        errorCode:
+          $ref: '#/components/schemas/types.ErrorCode'
+        statusCode:
+          type: integer
+      type: object

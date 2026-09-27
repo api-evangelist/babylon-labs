@@ -70,7 +70,7 @@ tags_raw:
 - API
 apis:
 - aid: babylon-labs:babylon-labs-shared-api
-  name: Babylon Labs shared API
+  name: Babylon Labs Shared API
   description: Shared API endpoints
   humanURL: https://docs.babylonlabs.io/developers/
   baseURL: https://staking-api.babylonlabs.io
@@ -85,32 +85,142 @@ apis:
     url: https://staking-api.babylonlabs.io/swagger/doc.json
   - type: License
     url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
-- aid: babylon-labs:babylon-labs-v1-api
-  name: Babylon Labs v1 API
-  description: Babylon Phase-1 API endpoints (Deprecated)
+- aid: babylon-labs:babylon-labs-apr-api
+  name: Babylon Labs Apr API
+  description: The Apr API from Babylon Labs — 1 operation(s) for apr.
   humanURL: https://docs.babylonlabs.io/developers/
   baseURL: https://staking-api.babylonlabs.io
   tags:
-  - v1
+  - Apr
   properties:
   - type: OpenAPI
-    url: openapi/babylon-labs-v1-api-openapi.yml
+    url: openapi/babylon-labs-apr-api-openapi.yml
   - type: APIReference
     url: https://staking-api.babylonlabs.io/swagger/doc.json
   - type: License
     url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
-- aid: babylon-labs:babylon-labs-v2-api
-  name: Babylon Labs v2 API
-  description: Babylon Phase-2 API endpoints
+- aid: babylon-labs:babylon-labs-delegation-api
+  name: Babylon Labs Delegation API
+  description: The Delegation API from Babylon Labs — 2 operation(s) for delegation.
   humanURL: https://docs.babylonlabs.io/developers/
   baseURL: https://staking-api.babylonlabs.io
   tags:
-  - v2
-  tags_raw:
-  - v2
+  - Delegation
   properties:
   - type: OpenAPI
-    url: openapi/babylon-labs-v2-api-openapi.yml
+    url: openapi/babylon-labs-delegation-api-openapi.yml
+  - type: APIReference
+    url: https://staking-api.babylonlabs.io/swagger/doc.json
+  - type: License
+    url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
+- aid: babylon-labs:babylon-labs-delegations-api
+  name: Babylon Labs Delegations API
+  description: The Delegations API from Babylon Labs — 1 operation(s) for delegations.
+  humanURL: https://docs.babylonlabs.io/developers/
+  baseURL: https://staking-api.babylonlabs.io
+  tags:
+  - Delegations
+  properties:
+  - type: OpenAPI
+    url: openapi/babylon-labs-delegations-api-openapi.yml
+  - type: APIReference
+    url: https://staking-api.babylonlabs.io/swagger/doc.json
+  - type: License
+    url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
+- aid: babylon-labs:babylon-labs-finality-providers-api
+  name: Babylon Labs Finality Providers API
+  description: The Finality Providers API from Babylon Labs — 2 operation(s) for finality providers.
+  humanURL: https://docs.babylonlabs.io/developers/
+  baseURL: https://staking-api.babylonlabs.io
+  tags:
+  - Finality Providers
+  properties:
+  - type: OpenAPI
+    url: openapi/babylon-labs-finality-providers-api-openapi.yml
+  - type: APIReference
+    url: https://staking-api.babylonlabs.io/swagger/doc.json
+  - type: License
+    url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
+- aid: babylon-labs:babylon-labs-global-params-api
+  name: Babylon Labs Global Params API
+  description: The Global Params API from Babylon Labs — 1 operation(s) for global params.
+  humanURL: https://docs.babylonlabs.io/developers/
+  baseURL: https://staking-api.babylonlabs.io
+  tags:
+  - Global Params
+  properties:
+  - type: OpenAPI
+    url: openapi/babylon-labs-global-params-api-openapi.yml
+  - type: APIReference
+    url: https://staking-api.babylonlabs.io/swagger/doc.json
+  - type: License
+    url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
+- aid: babylon-labs:babylon-labs-network-info-api
+  name: Babylon Labs Network Info API
+  description: The Network Info API from Babylon Labs — 1 operation(s) for network info.
+  humanURL: https://docs.babylonlabs.io/developers/
+  baseURL: https://staking-api.babylonlabs.io
+  tags:
+  - Network Info
+  properties:
+  - type: OpenAPI
+    url: openapi/babylon-labs-network-info-api-openapi.yml
+  - type: APIReference
+    url: https://staking-api.babylonlabs.io/swagger/doc.json
+  - type: License
+    url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
+- aid: babylon-labs:babylon-labs-prices-api
+  name: Babylon Labs Prices API
+  description: The Prices API from Babylon Labs — 1 operation(s) for prices.
+  humanURL: https://docs.babylonlabs.io/developers/
+  baseURL: https://staking-api.babylonlabs.io
+  tags:
+  - Prices
+  properties:
+  - type: OpenAPI
+    url: openapi/babylon-labs-prices-api-openapi.yml
+  - type: APIReference
+    url: https://staking-api.babylonlabs.io/swagger/doc.json
+  - type: License
+    url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
+- aid: babylon-labs:babylon-labs-staker-api
+  name: Babylon Labs Staker API
+  description: The Staker API from Babylon Labs — 2 operation(s) for staker.
+  humanURL: https://docs.babylonlabs.io/developers/
+  baseURL: https://staking-api.babylonlabs.io
+  tags:
+  - Staker
+  properties:
+  - type: OpenAPI
+    url: openapi/babylon-labs-staker-api-openapi.yml
+  - type: APIReference
+    url: https://staking-api.babylonlabs.io/swagger/doc.json
+  - type: License
+    url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
+- aid: babylon-labs:babylon-labs-stats-api
+  name: Babylon Labs Stats API
+  description: The Stats API from Babylon Labs — 3 operation(s) for stats.
+  humanURL: https://docs.babylonlabs.io/developers/
+  baseURL: https://staking-api.babylonlabs.io
+  tags:
+  - Stats
+  properties:
+  - type: OpenAPI
+    url: openapi/babylon-labs-stats-api-openapi.yml
+  - type: APIReference
+    url: https://staking-api.babylonlabs.io/swagger/doc.json
+  - type: License
+    url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
+- aid: babylon-labs:babylon-labs-unbonding-api
+  name: Babylon Labs Unbonding API
+  description: The Unbonding API from Babylon Labs — 2 operation(s) for unbonding.
+  humanURL: https://docs.babylonlabs.io/developers/
+  baseURL: https://staking-api.babylonlabs.io
+  tags:
+  - Unbonding
+  properties:
+  - type: OpenAPI
+    url: openapi/babylon-labs-unbonding-api-openapi.yml
   - type: APIReference
     url: https://staking-api.babylonlabs.io/swagger/doc.json
   - type: License

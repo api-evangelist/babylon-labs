@@ -1,0 +1,225 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: contact@babylonlabs.io
+  description: 'The Babylon Staking API offers information about the state of the Babylon BTC Staking system.
+
+    Your access and use is governed by the API Access License linked to below.'
+  license:
+    name: API Access License
+    url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
+  title: Babylon Staking Staker API
+  version: '2.0'
+tags:
+- name: Staker
+paths:
+  /v1/staker/delegations:
+    get:
+      description: 'Retrieves phase-1 delegations for a given staker. This endpoint will be deprecated once all phase-1 delegations are either withdrawn or registered into phase-2.
+
+        This endpoint is only used to show legacy phase-1 delegations for the purpose of unbonding or registering into phase-2.'
+      parameters:
+      - description: Staker BTC Public Key
+        in: query
+        name: staker_btc_pk
+        required: true
+        schema:
+          type: string
+      - description: Only return delegations with pending actions which include active, unbonding, unbonding_requested, unbonded
+        in: query
+        name: pending_action
+        schema:
+          type: boolean
+      - description: Pagination key to fetch the next page of delegations
+        in: query
+        name: pagination_key
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of delegations and pagination token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.PublicResponse-array_v1service_DelegationPublic'
+        '400':
+          description: 'Error: Bad Request'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error'
+      tags:
+      - Staker
+      summary: Get staker delegations
+      x-summary-source: derived
+      operationId: getV1StakerDelegations
+      x-operation-id-source: derived
+  /v2/staker/stats:
+    get:
+      description: Fetches staker stats for babylon staking including active tvl,
+      parameters:
+      - description: Public key of the staker to fetch
+        in: query
+        name: staker_pk_hex
+        required: true
+        schema:
+          type: string
+      - description: Babylon address of the staker to fetch
+        in: query
+        name: babylon_address
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Staker stats
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.PublicResponse-v2service_StakerStatsPublic'
+        '400':
+          description: 'Error: Bad Request'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error'
+        '404':
+          description: 'Error: Not Found'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error'
+        '500':
+          description: 'Error: Internal Server Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error'
+      summary: Get Staker Stats
+      tags:
+      - Staker
+      operationId: getV2StakerStats
+      x-operation-id-source: derived
+components:
+  schemas:
+    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
+      properties:
+        err: {}
+        errorCode:
+          $ref: '#/components/schemas/types.ErrorCode'
+        statusCode:
+          type: integer
+      type: object
+    handler.PublicResponse-v2service_StakerStatsPublic:
+      properties:
+        data:
+          $ref: '#/components/schemas/v2service.StakerStatsPublic'
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
+    types.DelegationState:
+      enum:
+      - active
+      - unbonding_requested
+      - unbonding
+      - unbonded
+      - withdrawable
+      - withdrawn
+      - transitioned
+      - slashed
+      type: string
+      x-enum-varnames:
+      - Active
+      - UnbondingRequested
+      - Unbonding
+      - Unbonded
+      - Withdrawable
+      - Withdrawn
+      - Transitioned
+      - Slashed
+    handler.paginationResponse:
+      properties:
+        next_key:
+          type: string
+      type: object
+    v1service.DelegationPublic:
+      properties:
+        finality_provider_pk_hex:
+          type: string
+        is_eligible_for_transition:
+          type: boolean
+        is_overflow:
+          type: boolean
+        is_slashed:
+          type: boolean
+        staker_pk_hex:
+          type: string
+        staking_tx:
+          $ref: '#/components/schemas/v1service.TransactionPublic'
+        staking_tx_hash_hex:
+          type: string
+        staking_value:
+          type: integer
+        state:
+          $ref: '#/components/schemas/types.DelegationState'
+        unbonding_tx:
+          $ref: '#/components/schemas/v1service.TransactionPublic'
+      type: object
+    v2service.StakerStatsPublic:
+      properties:
+        active_delegations:
+          type: integer
+        active_tvl:
+          type: integer
+        slashed_delegations:
+          type: integer
+        slashed_tvl:
+          type: integer
+        unbonding_delegations:
+          type: integer
+        unbonding_tvl:
+          type: integer
+        withdrawable_delegations:
+          type: integer
+        withdrawable_tvl:
+          type: integer
+      type: object
+    handler.PublicResponse-array_v1service_DelegationPublic:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/v1service.DelegationPublic'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
+    types.ErrorCode:
+      enum:
+      - INTERNAL_SERVICE_ERROR
+      - VALIDATION_ERROR
+      - NOT_FOUND
+      - BAD_REQUEST
+      - FORBIDDEN
+      - UNPROCESSABLE_ENTITY
+      - REQUEST_TIMEOUT
+      type: string
+      x-enum-varnames:
+      - InternalServiceError
+      - ValidationError
+      - NotFound
+      - BadRequest
+      - Forbidden
+      - UnprocessableEntity
+      - RequestTimeout
+    v1service.TransactionPublic:
+      properties:
+        output_index:
+          type: integer
+        start_height:
+          type: integer
+        start_timestamp:
+          type: string
+        timelock:
+          type: integer
+        tx_hex:
+          type: string
+      type: object

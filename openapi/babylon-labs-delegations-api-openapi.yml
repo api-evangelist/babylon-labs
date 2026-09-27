@@ -1,0 +1,230 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: contact@babylonlabs.io
+  description: 'The Babylon Staking API offers information about the state of the Babylon BTC Staking system.
+
+    Your access and use is governed by the API Access License linked to below.'
+  license:
+    name: API Access License
+    url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
+  title: Babylon Staking Delegations API
+  version: '2.0'
+tags:
+- name: Delegations
+paths:
+  /v2/delegations:
+    get:
+      description: Fetches delegations for babylon staking including tvl, total delegations, active tvl, active delegations and total stakers.
+      parameters:
+      - description: Staker public key in hex format. If omitted, babylon_address is used as the main query parameter and state is required.
+        in: query
+        name: staker_pk_hex
+        schema:
+          type: string
+      - description: Babylon address. Required if staker_pk_hex is omitted.
+        in: query
+        name: babylon_address
+        schema:
+          type: string
+      - description: State of delegations (only 'active' is supported). Required if staker_pk_hex is omitted.
+        in: query
+        name: state
+        schema:
+          type: string
+      - description: Pagination key to fetch the next page of delegations
+        in: query
+        name: pagination_key
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of staker delegations and pagination token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.PublicResponse-array_v2service_DelegationPublic'
+        '400':
+          description: 'Error: Bad Request'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error'
+        '404':
+          description: 'Error: Not Found'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error'
+        '500':
+          description: 'Error: Internal Server Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error'
+      summary: Get Delegations
+      tags:
+      - Delegations
+      operationId: getV2Delegations
+      x-operation-id-source: derived
+components:
+  schemas:
+    v2service.DelegationPublic:
+      properties:
+        delegation_staking:
+          $ref: '#/components/schemas/v2service.DelegationStaking'
+        delegation_unbonding:
+          $ref: '#/components/schemas/v2service.DelegationUnbonding'
+        finality_provider_btc_pks_hex:
+          items:
+            type: string
+          type: array
+        params_version:
+          type: integer
+        previous_staking_tx_hash_hex:
+          type: string
+        staker_btc_pk_hex:
+          type: string
+        state:
+          $ref: '#/components/schemas/v2types.DelegationState'
+        withdrawal_info:
+          $ref: '#/components/schemas/v2service.WithdrawalInfo'
+      type: object
+    v2service.WithdrawalInfo:
+      properties:
+        tx_hash:
+          type: string
+      type: object
+    v2types.DelegationState:
+      enum:
+      - PENDING
+      - VERIFIED
+      - ACTIVE
+      - TIMELOCK_UNBONDING
+      - EARLY_UNBONDING
+      - TIMELOCK_WITHDRAWABLE
+      - EARLY_UNBONDING_WITHDRAWABLE
+      - TIMELOCK_SLASHING_WITHDRAWABLE
+      - EARLY_UNBONDING_SLASHING_WITHDRAWABLE
+      - TIMELOCK_WITHDRAWN
+      - EARLY_UNBONDING_WITHDRAWN
+      - TIMELOCK_SLASHING_WITHDRAWN
+      - EARLY_UNBONDING_SLASHING_WITHDRAWN
+      - SLASHED
+      - EXPANDED
+      type: string
+      x-enum-varnames:
+      - StatePending
+      - StateVerified
+      - StateActive
+      - StateTimelockUnbonding
+      - StateEarlyUnbonding
+      - StateTimelockWithdrawable
+      - StateEarlyUnbondingWithdrawable
+      - StateTimelockSlashingWithdrawable
+      - StateEarlyUnbondingSlashingWithdrawable
+      - StateTimelockWithdrawn
+      - StateEarlyUnbondingWithdrawn
+      - StateTimelockSlashingWithdrawn
+      - StateEarlyUnbondingSlashingWithdrawn
+      - StateSlashed
+      - StateExpanded
+    handler.PublicResponse-array_v2service_DelegationPublic:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/v2service.DelegationPublic'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
+    v2service.StakingSlashing:
+      properties:
+        slashing_tx_hex:
+          type: string
+        spending_height:
+          type: integer
+      type: object
+    v2service.DelegationStaking:
+      properties:
+        bbn_inception_height:
+          type: integer
+        bbn_inception_time:
+          type: string
+        end_height:
+          type: integer
+        slashing:
+          $ref: '#/components/schemas/v2service.StakingSlashing'
+        staking_amount:
+          type: integer
+        staking_output_idx:
+          type: integer
+        staking_timelock:
+          type: integer
+        staking_tx_hash_hex:
+          type: string
+        staking_tx_hex:
+          type: string
+        start_height:
+          type: integer
+      type: object
+    v2service.UnbondingSlashing:
+      properties:
+        spending_height:
+          type: integer
+        unbonding_slashing_tx_hex:
+          type: string
+      type: object
+    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
+      properties:
+        err: {}
+        errorCode:
+          $ref: '#/components/schemas/types.ErrorCode'
+        statusCode:
+          type: integer
+      type: object
+    handler.paginationResponse:
+      properties:
+        next_key:
+          type: string
+      type: object
+    v2service.CovenantSignature:
+      properties:
+        covenant_btc_pk_hex:
+          type: string
+        signature_hex:
+          type: string
+        stake_expansion_signature_hex:
+          type: string
+      type: object
+    types.ErrorCode:
+      enum:
+      - INTERNAL_SERVICE_ERROR
+      - VALIDATION_ERROR
+      - NOT_FOUND
+      - BAD_REQUEST
+      - FORBIDDEN
+      - UNPROCESSABLE_ENTITY
+      - REQUEST_TIMEOUT
+      type: string
+      x-enum-varnames:
+      - InternalServiceError
+      - ValidationError
+      - NotFound
+      - BadRequest
+      - Forbidden
+      - UnprocessableEntity
+      - RequestTimeout
+    v2service.DelegationUnbonding:
+      properties:
+        covenant_unbonding_signatures:
+          items:
+            $ref: '#/components/schemas/v2service.CovenantSignature'
+          type: array
+        slashing:
+          $ref: '#/components/schemas/v2service.UnbondingSlashing'
+        unbonding_timelock:
+          type: integer
+        unbonding_tx:
+          type: string
+      type: object

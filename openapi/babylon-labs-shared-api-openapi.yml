@@ -115,6 +115,25 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    map_string_string:
+      additionalProperties:
+        type: string
+      type: object
+    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
+      properties:
+        err: {}
+        errorCode:
+          $ref: '#/components/schemas/types.ErrorCode'
+        statusCode:
+          type: integer
+      type: object
+    handler.PublicResponse-map_string_string:
+      properties:
+        data:
+          $ref: '#/components/schemas/map_string_string'
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
     handler.paginationResponse:
       properties:
         next_key:
@@ -145,22 +164,3 @@ components:
       - Forbidden
       - UnprocessableEntity
       - RequestTimeout
-    handler.PublicResponse-map_string_string:
-      properties:
-        data:
-          $ref: '#/components/schemas/map_string_string'
-        pagination:
-          $ref: '#/components/schemas/handler.paginationResponse'
-      type: object
-    map_string_string:
-      additionalProperties:
-        type: string
-      type: object
-    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
-      properties:
-        err: {}
-        errorCode:
-          $ref: '#/components/schemas/types.ErrorCode'
-        statusCode:
-          type: integer
-      type: object

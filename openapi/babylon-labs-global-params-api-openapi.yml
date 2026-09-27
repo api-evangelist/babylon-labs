@@ -1,0 +1,86 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: contact@babylonlabs.io
+  description: 'The Babylon Staking API offers information about the state of the Babylon BTC Staking system.
+
+    Your access and use is governed by the API Access License linked to below.'
+  license:
+    name: API Access License
+    url: https://docs.babylonlabs.io/assets/files/api-access-license.pdf
+  title: Babylon Staking Global Params API
+  version: '2.0'
+tags:
+- name: Global Params
+paths:
+  /v1/global-params:
+    get:
+      deprecated: true
+      description: '[DEPRECATED] Retrieves the global parameters for Babylon, including finality provider details. Please use /v2/network-info instead.'
+      responses:
+        '200':
+          description: Global parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.PublicResponse-v1service_GlobalParamsPublic'
+      tags:
+      - Global Params
+      summary: Get global params
+      x-summary-source: derived
+      operationId: getV1GlobalParams
+      x-operation-id-source: derived
+components:
+  schemas:
+    handler.paginationResponse:
+      properties:
+        next_key:
+          type: string
+      type: object
+    v1service.VersionedGlobalParamsPublic:
+      properties:
+        activation_height:
+          type: integer
+        cap_height:
+          type: integer
+        confirmation_depth:
+          type: integer
+        covenant_pks:
+          items:
+            type: string
+          type: array
+        covenant_quorum:
+          type: integer
+        max_staking_amount:
+          type: integer
+        max_staking_time:
+          type: integer
+        min_staking_amount:
+          type: integer
+        min_staking_time:
+          type: integer
+        staking_cap:
+          type: integer
+        tag:
+          type: string
+        unbonding_fee:
+          type: integer
+        unbonding_time:
+          type: integer
+        version:
+          type: integer
+      type: object
+    v1service.GlobalParamsPublic:
+      properties:
+        versions:
+          items:
+            $ref: '#/components/schemas/v1service.VersionedGlobalParamsPublic'
+          type: array
+      type: object
+    handler.PublicResponse-v1service_GlobalParamsPublic:
+      properties:
+        data:
+          $ref: '#/components/schemas/v1service.GlobalParamsPublic'
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
