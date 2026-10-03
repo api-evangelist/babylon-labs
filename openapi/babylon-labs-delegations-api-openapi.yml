@@ -69,30 +69,108 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    v2service.DelegationPublic:
+    v2service.DelegationUnbonding:
       properties:
-        delegation_staking:
-          $ref: '#/components/schemas/v2service.DelegationStaking'
-        delegation_unbonding:
-          $ref: '#/components/schemas/v2service.DelegationUnbonding'
-        finality_provider_btc_pks_hex:
+        covenant_unbonding_signatures:
           items:
-            type: string
+            $ref: '#/components/schemas/v2service.CovenantSignature'
           type: array
-        params_version:
+        slashing:
+          $ref: '#/components/schemas/v2service.UnbondingSlashing'
+        unbonding_timelock:
           type: integer
-        previous_staking_tx_hash_hex:
+        unbonding_tx:
           type: string
-        staker_btc_pk_hex:
-          type: string
-        state:
-          $ref: '#/components/schemas/v2types.DelegationState'
-        withdrawal_info:
-          $ref: '#/components/schemas/v2service.WithdrawalInfo'
       type: object
     v2service.WithdrawalInfo:
       properties:
         tx_hash:
+          type: string
+      type: object
+    types.ErrorCode:
+      enum:
+      - INTERNAL_SERVICE_ERROR
+      - VALIDATION_ERROR
+      - NOT_FOUND
+      - BAD_REQUEST
+      - FORBIDDEN
+      - UNPROCESSABLE_ENTITY
+      - REQUEST_TIMEOUT
+      type: string
+      x-enum-varnames:
+      - InternalServiceError
+      - ValidationError
+      - NotFound
+      - BadRequest
+      - Forbidden
+      - UnprocessableEntity
+      - RequestTimeout
+    v2service.DelegationStaking:
+      properties:
+        bbn_inception_height:
+          type: integer
+        bbn_inception_time:
+          type: string
+        end_height:
+          type: integer
+        slashing:
+          $ref: '#/components/schemas/v2service.StakingSlashing'
+        staking_amount:
+          type: integer
+        staking_output_idx:
+          type: integer
+        staking_timelock:
+          type: integer
+        staking_tx_hash_hex:
+          type: string
+        staking_tx_hex:
+          type: string
+        start_height:
+          type: integer
+      type: object
+    v2service.UnbondingSlashing:
+      properties:
+        spending_height:
+          type: integer
+        unbonding_slashing_tx_hex:
+          type: string
+      type: object
+    handler.paginationResponse:
+      properties:
+        next_key:
+          type: string
+      type: object
+    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
+      properties:
+        err: {}
+        errorCode:
+          $ref: '#/components/schemas/types.ErrorCode'
+        statusCode:
+          type: integer
+      type: object
+    handler.PublicResponse-array_v2service_DelegationPublic:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/v2service.DelegationPublic'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
+    v2service.StakingSlashing:
+      properties:
+        slashing_tx_hex:
+          type: string
+        spending_height:
+          type: integer
+      type: object
+    v2service.CovenantSignature:
+      properties:
+        covenant_btc_pk_hex:
+          type: string
+        signature_hex:
+          type: string
+        stake_expansion_signature_hex:
           type: string
       type: object
     v2types.DelegationState:
@@ -129,102 +207,24 @@ components:
       - StateEarlyUnbondingSlashingWithdrawn
       - StateSlashed
       - StateExpanded
-    handler.PublicResponse-array_v2service_DelegationPublic:
+    v2service.DelegationPublic:
       properties:
-        data:
+        delegation_staking:
+          $ref: '#/components/schemas/v2service.DelegationStaking'
+        delegation_unbonding:
+          $ref: '#/components/schemas/v2service.DelegationUnbonding'
+        finality_provider_btc_pks_hex:
           items:
-            $ref: '#/components/schemas/v2service.DelegationPublic'
+            type: string
           type: array
-        pagination:
-          $ref: '#/components/schemas/handler.paginationResponse'
-      type: object
-    v2service.StakingSlashing:
-      properties:
-        slashing_tx_hex:
-          type: string
-        spending_height:
+        params_version:
           type: integer
-      type: object
-    v2service.DelegationStaking:
-      properties:
-        bbn_inception_height:
-          type: integer
-        bbn_inception_time:
+        previous_staking_tx_hash_hex:
           type: string
-        end_height:
-          type: integer
-        slashing:
-          $ref: '#/components/schemas/v2service.StakingSlashing'
-        staking_amount:
-          type: integer
-        staking_output_idx:
-          type: integer
-        staking_timelock:
-          type: integer
-        staking_tx_hash_hex:
+        staker_btc_pk_hex:
           type: string
-        staking_tx_hex:
-          type: string
-        start_height:
-          type: integer
-      type: object
-    v2service.UnbondingSlashing:
-      properties:
-        spending_height:
-          type: integer
-        unbonding_slashing_tx_hex:
-          type: string
-      type: object
-    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
-      properties:
-        err: {}
-        errorCode:
-          $ref: '#/components/schemas/types.ErrorCode'
-        statusCode:
-          type: integer
-      type: object
-    handler.paginationResponse:
-      properties:
-        next_key:
-          type: string
-      type: object
-    v2service.CovenantSignature:
-      properties:
-        covenant_btc_pk_hex:
-          type: string
-        signature_hex:
-          type: string
-        stake_expansion_signature_hex:
-          type: string
-      type: object
-    types.ErrorCode:
-      enum:
-      - INTERNAL_SERVICE_ERROR
-      - VALIDATION_ERROR
-      - NOT_FOUND
-      - BAD_REQUEST
-      - FORBIDDEN
-      - UNPROCESSABLE_ENTITY
-      - REQUEST_TIMEOUT
-      type: string
-      x-enum-varnames:
-      - InternalServiceError
-      - ValidationError
-      - NotFound
-      - BadRequest
-      - Forbidden
-      - UnprocessableEntity
-      - RequestTimeout
-    v2service.DelegationUnbonding:
-      properties:
-        covenant_unbonding_signatures:
-          items:
-            $ref: '#/components/schemas/v2service.CovenantSignature'
-          type: array
-        slashing:
-          $ref: '#/components/schemas/v2service.UnbondingSlashing'
-        unbonding_timelock:
-          type: integer
-        unbonding_tx:
-          type: string
+        state:
+          $ref: '#/components/schemas/v2types.DelegationState'
+        withdrawal_info:
+          $ref: '#/components/schemas/v2service.WithdrawalInfo'
       type: object

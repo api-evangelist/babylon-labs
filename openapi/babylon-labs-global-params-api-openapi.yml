@@ -32,11 +32,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    handler.paginationResponse:
-      properties:
-        next_key:
-          type: string
-      type: object
     v1service.VersionedGlobalParamsPublic:
       properties:
         activation_height:
@@ -76,6 +71,11 @@ components:
           items:
             $ref: '#/components/schemas/v1service.VersionedGlobalParamsPublic'
           type: array
+      type: object
+    handler.paginationResponse:
+      properties:
+        next_key:
+          type: string
       type: object
     handler.PublicResponse-v1service_GlobalParamsPublic:
       properties:

@@ -90,10 +90,12 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    handler.PublicResponse-v2service_OverallStatsPublic:
+    handler.PublicResponse-array_v1service_StakerStatsPublic:
       properties:
         data:
-          $ref: '#/components/schemas/v2service.OverallStatsPublic'
+          items:
+            $ref: '#/components/schemas/v1service.StakerStatsPublic'
+          type: array
         pagination:
           $ref: '#/components/schemas/handler.paginationResponse'
       type: object
@@ -124,35 +126,24 @@ components:
         total_finality_providers:
           type: integer
       type: object
-    handler.PublicResponse-v1service_OverallStatsPublic:
-      properties:
-        data:
-          $ref: '#/components/schemas/v1service.OverallStatsPublic'
-        pagination:
-          $ref: '#/components/schemas/handler.paginationResponse'
-      type: object
-    handler.PublicResponse-array_v1service_StakerStatsPublic:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/v1service.StakerStatsPublic'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/handler.paginationResponse'
-      type: object
-    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
-      properties:
-        err: {}
-        errorCode:
-          $ref: '#/components/schemas/types.ErrorCode'
-        statusCode:
-          type: integer
-      type: object
-    handler.paginationResponse:
-      properties:
-        next_key:
-          type: string
-      type: object
+    types.ErrorCode:
+      enum:
+      - INTERNAL_SERVICE_ERROR
+      - VALIDATION_ERROR
+      - NOT_FOUND
+      - BAD_REQUEST
+      - FORBIDDEN
+      - UNPROCESSABLE_ENTITY
+      - REQUEST_TIMEOUT
+      type: string
+      x-enum-varnames:
+      - InternalServiceError
+      - ValidationError
+      - NotFound
+      - BadRequest
+      - Forbidden
+      - UnprocessableEntity
+      - RequestTimeout
     v1service.OverallStatsPublic:
       properties:
         active_delegations:
@@ -173,24 +164,33 @@ components:
         unconfirmed_tvl:
           type: integer
       type: object
-    types.ErrorCode:
-      enum:
-      - INTERNAL_SERVICE_ERROR
-      - VALIDATION_ERROR
-      - NOT_FOUND
-      - BAD_REQUEST
-      - FORBIDDEN
-      - UNPROCESSABLE_ENTITY
-      - REQUEST_TIMEOUT
-      type: string
-      x-enum-varnames:
-      - InternalServiceError
-      - ValidationError
-      - NotFound
-      - BadRequest
-      - Forbidden
-      - UnprocessableEntity
-      - RequestTimeout
+    handler.PublicResponse-v1service_OverallStatsPublic:
+      properties:
+        data:
+          $ref: '#/components/schemas/v1service.OverallStatsPublic'
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
+    handler.paginationResponse:
+      properties:
+        next_key:
+          type: string
+      type: object
+    handler.PublicResponse-v2service_OverallStatsPublic:
+      properties:
+        data:
+          $ref: '#/components/schemas/v2service.OverallStatsPublic'
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
+    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
+      properties:
+        err: {}
+        errorCode:
+          $ref: '#/components/schemas/types.ErrorCode'
+        statusCode:
+          type: integer
+      type: object
     v1service.StakerStatsPublic:
       properties:
         active_delegations:

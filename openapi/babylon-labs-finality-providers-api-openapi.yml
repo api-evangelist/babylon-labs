@@ -81,30 +81,23 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    types.FinalityProviderDescription:
+    v2service.FinalityProviderPublic:
       properties:
-        details:
+        active_delegations:
+          type: integer
+        active_tvl:
+          type: integer
+        btc_pk:
           type: string
-        identity:
+        commission:
           type: string
-        moniker:
+        description:
+          $ref: '#/components/schemas/types.FinalityProviderDescription'
+        logo_url:
           type: string
-        security_contact:
-          type: string
-        website:
-          type: string
-      type: object
-    v1service.FpDescriptionPublic:
-      properties:
-        details:
-          type: string
-        identity:
-          type: string
-        moniker:
-          type: string
-        security_contact:
-          type: string
-        website:
+        state:
+          $ref: '#/components/schemas/types.FinalityProviderQueryingState'
+        type:
           type: string
       type: object
     types.ErrorCode:
@@ -125,6 +118,11 @@ components:
       - Forbidden
       - UnprocessableEntity
       - RequestTimeout
+    handler.paginationResponse:
+      properties:
+        next_key:
+          type: string
+      type: object
     github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
       properties:
         err: {}
@@ -132,15 +130,6 @@ components:
           $ref: '#/components/schemas/types.ErrorCode'
         statusCode:
           type: integer
-      type: object
-    handler.PublicResponse-array_v1service_FpDetailsPublic:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/v1service.FpDetailsPublic'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/handler.paginationResponse'
       type: object
     handler.PublicResponse-array_v2service_FinalityProviderPublic:
       properties:
@@ -151,28 +140,39 @@ components:
         pagination:
           $ref: '#/components/schemas/handler.paginationResponse'
       type: object
-    handler.paginationResponse:
+    handler.PublicResponse-array_v1service_FpDetailsPublic:
       properties:
-        next_key:
+        data:
+          items:
+            $ref: '#/components/schemas/v1service.FpDetailsPublic'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
+    v1service.FpDescriptionPublic:
+      properties:
+        details:
+          type: string
+        identity:
+          type: string
+        moniker:
+          type: string
+        security_contact:
+          type: string
+        website:
           type: string
       type: object
-    v2service.FinalityProviderPublic:
+    types.FinalityProviderDescription:
       properties:
-        active_delegations:
-          type: integer
-        active_tvl:
-          type: integer
-        btc_pk:
+        details:
           type: string
-        commission:
+        identity:
           type: string
-        description:
-          $ref: '#/components/schemas/types.FinalityProviderDescription'
-        logo_url:
+        moniker:
           type: string
-        state:
-          $ref: '#/components/schemas/types.FinalityProviderQueryingState'
-        type:
+        security_contact:
+          type: string
+        website:
           type: string
       type: object
     v1service.FpDetailsPublic:

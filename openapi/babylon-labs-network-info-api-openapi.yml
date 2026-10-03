@@ -37,6 +37,13 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    v2service.NetworkInfoPublic:
+      properties:
+        network_upgrade:
+          $ref: '#/components/schemas/v2service.NetworkUpgradePublic'
+        params:
+          $ref: '#/components/schemas/v2service.ParamsPublic'
+      type: object
     indexertypes.BbnStakingParams:
       properties:
         allow_list_expiration_height:
@@ -74,55 +81,6 @@ components:
         version:
           type: integer
       type: object
-    v2service.NetworkUpgradePublic:
-      properties:
-        pop:
-          items:
-            $ref: '#/components/schemas/v2service.POPUpgradePublic'
-          type: array
-      type: object
-    v2service.ParamsPublic:
-      properties:
-        bbn:
-          items:
-            $ref: '#/components/schemas/indexertypes.BbnStakingParams'
-          type: array
-        btc:
-          items:
-            $ref: '#/components/schemas/indexertypes.BtcCheckpointParams'
-          type: array
-      type: object
-    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
-      properties:
-        err: {}
-        errorCode:
-          $ref: '#/components/schemas/types.ErrorCode'
-        statusCode:
-          type: integer
-      type: object
-    v2service.NetworkInfoPublic:
-      properties:
-        network_upgrade:
-          $ref: '#/components/schemas/v2service.NetworkUpgradePublic'
-        params:
-          $ref: '#/components/schemas/v2service.ParamsPublic'
-      type: object
-    indexertypes.BtcCheckpointParams:
-      properties:
-        btc_confirmation_depth:
-          type: integer
-        checkpoint_finalization_timeout:
-          type: integer
-        version:
-          type: integer
-      type: object
-    v2service.POPUpgradePublic:
-      properties:
-        height:
-          type: integer
-        version:
-          type: integer
-      type: object
     types.ErrorCode:
       enum:
       - INTERNAL_SERVICE_ERROR
@@ -141,3 +99,45 @@ components:
       - Forbidden
       - UnprocessableEntity
       - RequestTimeout
+    v2service.NetworkUpgradePublic:
+      properties:
+        pop:
+          items:
+            $ref: '#/components/schemas/v2service.POPUpgradePublic'
+          type: array
+      type: object
+    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
+      properties:
+        err: {}
+        errorCode:
+          $ref: '#/components/schemas/types.ErrorCode'
+        statusCode:
+          type: integer
+      type: object
+    indexertypes.BtcCheckpointParams:
+      properties:
+        btc_confirmation_depth:
+          type: integer
+        checkpoint_finalization_timeout:
+          type: integer
+        version:
+          type: integer
+      type: object
+    v2service.POPUpgradePublic:
+      properties:
+        height:
+          type: integer
+        version:
+          type: integer
+      type: object
+    v2service.ParamsPublic:
+      properties:
+        bbn:
+          items:
+            $ref: '#/components/schemas/indexertypes.BbnStakingParams'
+          type: array
+        btc:
+          items:
+            $ref: '#/components/schemas/indexertypes.BtcCheckpointParams'
+          type: array
+      type: object

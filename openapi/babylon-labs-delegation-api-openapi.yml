@@ -85,80 +85,49 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    v2service.DelegationPublic:
+    v2service.DelegationUnbonding:
       properties:
-        delegation_staking:
-          $ref: '#/components/schemas/v2service.DelegationStaking'
-        delegation_unbonding:
-          $ref: '#/components/schemas/v2service.DelegationUnbonding'
-        finality_provider_btc_pks_hex:
+        covenant_unbonding_signatures:
           items:
-            type: string
+            $ref: '#/components/schemas/v2service.CovenantSignature'
           type: array
-        params_version:
+        slashing:
+          $ref: '#/components/schemas/v2service.UnbondingSlashing'
+        unbonding_timelock:
           type: integer
-        previous_staking_tx_hash_hex:
+        unbonding_tx:
           type: string
-        staker_btc_pk_hex:
-          type: string
-        state:
-          $ref: '#/components/schemas/v2types.DelegationState'
-        withdrawal_info:
-          $ref: '#/components/schemas/v2service.WithdrawalInfo'
+      type: object
+    handler.PublicResponse-v2service_DelegationPublic:
+      properties:
+        data:
+          $ref: '#/components/schemas/v2service.DelegationPublic'
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
       type: object
     v2service.WithdrawalInfo:
       properties:
         tx_hash:
           type: string
       type: object
-    v2types.DelegationState:
+    types.ErrorCode:
       enum:
-      - PENDING
-      - VERIFIED
-      - ACTIVE
-      - TIMELOCK_UNBONDING
-      - EARLY_UNBONDING
-      - TIMELOCK_WITHDRAWABLE
-      - EARLY_UNBONDING_WITHDRAWABLE
-      - TIMELOCK_SLASHING_WITHDRAWABLE
-      - EARLY_UNBONDING_SLASHING_WITHDRAWABLE
-      - TIMELOCK_WITHDRAWN
-      - EARLY_UNBONDING_WITHDRAWN
-      - TIMELOCK_SLASHING_WITHDRAWN
-      - EARLY_UNBONDING_SLASHING_WITHDRAWN
-      - SLASHED
-      - EXPANDED
+      - INTERNAL_SERVICE_ERROR
+      - VALIDATION_ERROR
+      - NOT_FOUND
+      - BAD_REQUEST
+      - FORBIDDEN
+      - UNPROCESSABLE_ENTITY
+      - REQUEST_TIMEOUT
       type: string
       x-enum-varnames:
-      - StatePending
-      - StateVerified
-      - StateActive
-      - StateTimelockUnbonding
-      - StateEarlyUnbonding
-      - StateTimelockWithdrawable
-      - StateEarlyUnbondingWithdrawable
-      - StateTimelockSlashingWithdrawable
-      - StateEarlyUnbondingSlashingWithdrawable
-      - StateTimelockWithdrawn
-      - StateEarlyUnbondingWithdrawn
-      - StateTimelockSlashingWithdrawn
-      - StateEarlyUnbondingSlashingWithdrawn
-      - StateSlashed
-      - StateExpanded
-    handler.PublicResponse-v1service_DelegationPublic:
-      properties:
-        data:
-          $ref: '#/components/schemas/v1service.DelegationPublic'
-        pagination:
-          $ref: '#/components/schemas/handler.paginationResponse'
-      type: object
-    v2service.StakingSlashing:
-      properties:
-        slashing_tx_hex:
-          type: string
-        spending_height:
-          type: integer
-      type: object
+      - InternalServiceError
+      - ValidationError
+      - NotFound
+      - BadRequest
+      - Forbidden
+      - UnprocessableEntity
+      - RequestTimeout
     v2service.DelegationStaking:
       properties:
         bbn_inception_height:
@@ -182,10 +151,10 @@ components:
         start_height:
           type: integer
       type: object
-    handler.PublicResponse-v2service_DelegationPublic:
+    handler.PublicResponse-v1service_DelegationPublic:
       properties:
         data:
-          $ref: '#/components/schemas/v2service.DelegationPublic'
+          $ref: '#/components/schemas/v1service.DelegationPublic'
         pagination:
           $ref: '#/components/schemas/handler.paginationResponse'
       type: object
@@ -195,14 +164,6 @@ components:
           type: integer
         unbonding_slashing_tx_hex:
           type: string
-      type: object
-    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
-      properties:
-        err: {}
-        errorCode:
-          $ref: '#/components/schemas/types.ErrorCode'
-        statusCode:
-          type: integer
       type: object
     handler.paginationResponse:
       properties:
@@ -252,6 +213,21 @@ components:
       - Withdrawn
       - Transitioned
       - Slashed
+    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
+      properties:
+        err: {}
+        errorCode:
+          $ref: '#/components/schemas/types.ErrorCode'
+        statusCode:
+          type: integer
+      type: object
+    v2service.StakingSlashing:
+      properties:
+        slashing_tx_hex:
+          type: string
+        spending_height:
+          type: integer
+      type: object
     v2service.CovenantSignature:
       properties:
         covenant_btc_pk_hex:
@@ -261,24 +237,40 @@ components:
         stake_expansion_signature_hex:
           type: string
       type: object
-    types.ErrorCode:
+    v2types.DelegationState:
       enum:
-      - INTERNAL_SERVICE_ERROR
-      - VALIDATION_ERROR
-      - NOT_FOUND
-      - BAD_REQUEST
-      - FORBIDDEN
-      - UNPROCESSABLE_ENTITY
-      - REQUEST_TIMEOUT
+      - PENDING
+      - VERIFIED
+      - ACTIVE
+      - TIMELOCK_UNBONDING
+      - EARLY_UNBONDING
+      - TIMELOCK_WITHDRAWABLE
+      - EARLY_UNBONDING_WITHDRAWABLE
+      - TIMELOCK_SLASHING_WITHDRAWABLE
+      - EARLY_UNBONDING_SLASHING_WITHDRAWABLE
+      - TIMELOCK_WITHDRAWN
+      - EARLY_UNBONDING_WITHDRAWN
+      - TIMELOCK_SLASHING_WITHDRAWN
+      - EARLY_UNBONDING_SLASHING_WITHDRAWN
+      - SLASHED
+      - EXPANDED
       type: string
       x-enum-varnames:
-      - InternalServiceError
-      - ValidationError
-      - NotFound
-      - BadRequest
-      - Forbidden
-      - UnprocessableEntity
-      - RequestTimeout
+      - StatePending
+      - StateVerified
+      - StateActive
+      - StateTimelockUnbonding
+      - StateEarlyUnbonding
+      - StateTimelockWithdrawable
+      - StateEarlyUnbondingWithdrawable
+      - StateTimelockSlashingWithdrawable
+      - StateEarlyUnbondingSlashingWithdrawable
+      - StateTimelockWithdrawn
+      - StateEarlyUnbondingWithdrawn
+      - StateTimelockSlashingWithdrawn
+      - StateEarlyUnbondingSlashingWithdrawn
+      - StateSlashed
+      - StateExpanded
     v1service.TransactionPublic:
       properties:
         output_index:
@@ -292,16 +284,24 @@ components:
         tx_hex:
           type: string
       type: object
-    v2service.DelegationUnbonding:
+    v2service.DelegationPublic:
       properties:
-        covenant_unbonding_signatures:
+        delegation_staking:
+          $ref: '#/components/schemas/v2service.DelegationStaking'
+        delegation_unbonding:
+          $ref: '#/components/schemas/v2service.DelegationUnbonding'
+        finality_provider_btc_pks_hex:
           items:
-            $ref: '#/components/schemas/v2service.CovenantSignature'
+            type: string
           type: array
-        slashing:
-          $ref: '#/components/schemas/v2service.UnbondingSlashing'
-        unbonding_timelock:
+        params_version:
           type: integer
-        unbonding_tx:
+        previous_staking_tx_hash_hex:
           type: string
+        staker_btc_pk_hex:
+          type: string
+        state:
+          $ref: '#/components/schemas/v2types.DelegationState'
+        withdrawal_info:
+          $ref: '#/components/schemas/v2service.WithdrawalInfo'
       type: object

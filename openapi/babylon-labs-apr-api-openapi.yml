@@ -49,46 +49,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    handler.PublicResponse-v2service_StakingAPRPublic:
-      properties:
-        data:
-          $ref: '#/components/schemas/v2service.StakingAPRPublic'
-        pagination:
-          $ref: '#/components/schemas/handler.paginationResponse'
-      type: object
-    v2service.apr:
-      properties:
-        baby_staking_apr:
-          type: number
-        btc_staking_apr:
-          type: number
-        co_staking_apr:
-          type: number
-        total_apr:
-          type: number
-      type: object
-    v2service.StakingAPRPublic:
-      properties:
-        additional_baby_needed_for_boost:
-          type: number
-        boost:
-          $ref: '#/components/schemas/v2service.apr'
-        current:
-          $ref: '#/components/schemas/v2service.apr'
-      type: object
-    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
-      properties:
-        err: {}
-        errorCode:
-          $ref: '#/components/schemas/types.ErrorCode'
-        statusCode:
-          type: integer
-      type: object
-    handler.paginationResponse:
-      properties:
-        next_key:
-          type: string
-      type: object
     types.ErrorCode:
       enum:
       - INTERNAL_SERVICE_ERROR
@@ -107,3 +67,43 @@ components:
       - Forbidden
       - UnprocessableEntity
       - RequestTimeout
+    handler.PublicResponse-v2service_StakingAPRPublic:
+      properties:
+        data:
+          $ref: '#/components/schemas/v2service.StakingAPRPublic'
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
+    handler.paginationResponse:
+      properties:
+        next_key:
+          type: string
+      type: object
+    v2service.StakingAPRPublic:
+      properties:
+        additional_baby_needed_for_boost:
+          type: number
+        boost:
+          $ref: '#/components/schemas/v2service.apr'
+        current:
+          $ref: '#/components/schemas/v2service.apr'
+      type: object
+    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
+      properties:
+        err: {}
+        errorCode:
+          $ref: '#/components/schemas/types.ErrorCode'
+        statusCode:
+          type: integer
+      type: object
+    v2service.apr:
+      properties:
+        baby_staking_apr:
+          type: number
+        btc_staking_apr:
+          type: number
+        co_staking_apr:
+          type: number
+        total_apr:
+          type: number
+      type: object

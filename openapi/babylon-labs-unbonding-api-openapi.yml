@@ -65,6 +65,14 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
+      properties:
+        err: {}
+        errorCode:
+          $ref: '#/components/schemas/types.ErrorCode'
+        statusCode:
+          type: integer
+      type: object
     types.ErrorCode:
       enum:
       - INTERNAL_SERVICE_ERROR
@@ -93,12 +101,4 @@ components:
           type: string
         unbonding_tx_hex:
           type: string
-      type: object
-    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
-      properties:
-        err: {}
-        errorCode:
-          $ref: '#/components/schemas/types.ErrorCode'
-        statusCode:
-          type: integer
       type: object
