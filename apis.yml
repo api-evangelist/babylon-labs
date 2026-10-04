@@ -91,6 +91,8 @@ apis:
   humanURL: https://docs.babylonlabs.io/developers/
   baseURL: https://staking-api.babylonlabs.io
   tags:
+  - APR
+  tags_raw:
   - Apr
   properties:
   - type: OpenAPI
@@ -119,6 +121,8 @@ apis:
   humanURL: https://docs.babylonlabs.io/developers/
   baseURL: https://staking-api.babylonlabs.io
   tags:
+  - Delegation
+  tags_raw:
   - Delegations
   properties:
   - type: OpenAPI
