@@ -72,15 +72,15 @@ components:
             $ref: '#/components/schemas/v1service.VersionedGlobalParamsPublic'
           type: array
       type: object
-    handler.paginationResponse:
-      properties:
-        next_key:
-          type: string
-      type: object
     handler.PublicResponse-v1service_GlobalParamsPublic:
       properties:
         data:
           $ref: '#/components/schemas/v1service.GlobalParamsPublic'
         pagination:
           $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
+    handler.paginationResponse:
+      properties:
+        next_key:
+          type: string
       type: object

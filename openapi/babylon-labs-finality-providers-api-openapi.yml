@@ -81,7 +81,7 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    v2service.FinalityProviderPublic:
+    v1service.FpDetailsPublic:
       properties:
         active_delegations:
           type: integer
@@ -92,13 +92,11 @@ components:
         commission:
           type: string
         description:
-          $ref: '#/components/schemas/types.FinalityProviderDescription'
-        logo_url:
-          type: string
-        state:
-          $ref: '#/components/schemas/types.FinalityProviderQueryingState'
-        type:
-          type: string
+          $ref: '#/components/schemas/v1service.FpDescriptionPublic'
+        total_delegations:
+          type: integer
+        total_tvl:
+          type: integer
       type: object
     types.ErrorCode:
       enum:
@@ -123,14 +121,6 @@ components:
         next_key:
           type: string
       type: object
-    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
-      properties:
-        err: {}
-        errorCode:
-          $ref: '#/components/schemas/types.ErrorCode'
-        statusCode:
-          type: integer
-      type: object
     handler.PublicResponse-array_v2service_FinalityProviderPublic:
       properties:
         data:
@@ -149,19 +139,6 @@ components:
         pagination:
           $ref: '#/components/schemas/handler.paginationResponse'
       type: object
-    v1service.FpDescriptionPublic:
-      properties:
-        details:
-          type: string
-        identity:
-          type: string
-        moniker:
-          type: string
-        security_contact:
-          type: string
-        website:
-          type: string
-      type: object
     types.FinalityProviderDescription:
       properties:
         details:
@@ -175,7 +152,28 @@ components:
         website:
           type: string
       type: object
-    v1service.FpDetailsPublic:
+    v1service.FpDescriptionPublic:
+      properties:
+        details:
+          type: string
+        identity:
+          type: string
+        moniker:
+          type: string
+        security_contact:
+          type: string
+        website:
+          type: string
+      type: object
+    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
+      properties:
+        err: {}
+        errorCode:
+          $ref: '#/components/schemas/types.ErrorCode'
+        statusCode:
+          type: integer
+      type: object
+    v2service.FinalityProviderPublic:
       properties:
         active_delegations:
           type: integer
@@ -186,11 +184,13 @@ components:
         commission:
           type: string
         description:
-          $ref: '#/components/schemas/v1service.FpDescriptionPublic'
-        total_delegations:
-          type: integer
-        total_tvl:
-          type: integer
+          $ref: '#/components/schemas/types.FinalityProviderDescription'
+        logo_url:
+          type: string
+        state:
+          $ref: '#/components/schemas/types.FinalityProviderQueryingState'
+        type:
+          type: string
       type: object
     types.FinalityProviderQueryingState:
       enum:

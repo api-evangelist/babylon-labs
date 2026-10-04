@@ -101,24 +101,34 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    v2service.StakerStatsPublic:
+    handler.PublicResponse-v2service_StakerStatsPublic:
       properties:
-        active_delegations:
+        data:
+          $ref: '#/components/schemas/v2service.StakerStatsPublic'
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
+    v1service.TransactionPublic:
+      properties:
+        output_index:
           type: integer
-        active_tvl:
+        start_height:
           type: integer
-        slashed_delegations:
+        start_timestamp:
+          type: string
+        timelock:
           type: integer
-        slashed_tvl:
-          type: integer
-        unbonding_delegations:
-          type: integer
-        unbonding_tvl:
-          type: integer
-        withdrawable_delegations:
-          type: integer
-        withdrawable_tvl:
-          type: integer
+        tx_hex:
+          type: string
+      type: object
+    handler.PublicResponse-array_v1service_DelegationPublic:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/v1service.DelegationPublic'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
       type: object
     types.ErrorCode:
       enum:
@@ -138,6 +148,58 @@ components:
       - Forbidden
       - UnprocessableEntity
       - RequestTimeout
+    handler.paginationResponse:
+      properties:
+        next_key:
+          type: string
+      type: object
+    v2service.StakerStatsPublic:
+      properties:
+        active_delegations:
+          type: integer
+        active_tvl:
+          type: integer
+        slashed_delegations:
+          type: integer
+        slashed_tvl:
+          type: integer
+        unbonding_delegations:
+          type: integer
+        unbonding_tvl:
+          type: integer
+        withdrawable_delegations:
+          type: integer
+        withdrawable_tvl:
+          type: integer
+      type: object
+    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
+      properties:
+        err: {}
+        errorCode:
+          $ref: '#/components/schemas/types.ErrorCode'
+        statusCode:
+          type: integer
+      type: object
+    types.DelegationState:
+      enum:
+      - active
+      - unbonding_requested
+      - unbonding
+      - unbonded
+      - withdrawable
+      - withdrawn
+      - transitioned
+      - slashed
+      type: string
+      x-enum-varnames:
+      - Active
+      - UnbondingRequested
+      - Unbonding
+      - Unbonded
+      - Withdrawable
+      - Withdrawn
+      - Transitioned
+      - Slashed
     v1service.DelegationPublic:
       properties:
         finality_provider_pk_hex:
@@ -160,66 +222,4 @@ components:
           $ref: '#/components/schemas/types.DelegationState'
         unbonding_tx:
           $ref: '#/components/schemas/v1service.TransactionPublic'
-      type: object
-    handler.paginationResponse:
-      properties:
-        next_key:
-          type: string
-      type: object
-    types.DelegationState:
-      enum:
-      - active
-      - unbonding_requested
-      - unbonding
-      - unbonded
-      - withdrawable
-      - withdrawn
-      - transitioned
-      - slashed
-      type: string
-      x-enum-varnames:
-      - Active
-      - UnbondingRequested
-      - Unbonding
-      - Unbonded
-      - Withdrawable
-      - Withdrawn
-      - Transitioned
-      - Slashed
-    handler.PublicResponse-v2service_StakerStatsPublic:
-      properties:
-        data:
-          $ref: '#/components/schemas/v2service.StakerStatsPublic'
-        pagination:
-          $ref: '#/components/schemas/handler.paginationResponse'
-      type: object
-    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
-      properties:
-        err: {}
-        errorCode:
-          $ref: '#/components/schemas/types.ErrorCode'
-        statusCode:
-          type: integer
-      type: object
-    handler.PublicResponse-array_v1service_DelegationPublic:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/v1service.DelegationPublic'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/handler.paginationResponse'
-      type: object
-    v1service.TransactionPublic:
-      properties:
-        output_index:
-          type: integer
-        start_height:
-          type: integer
-        start_timestamp:
-          type: string
-        timelock:
-          type: integer
-        tx_hex:
-          type: string
       type: object

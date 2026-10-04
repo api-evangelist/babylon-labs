@@ -115,6 +115,10 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    map_string_string:
+      additionalProperties:
+        type: string
+      type: object
     types.ErrorCode:
       enum:
       - INTERNAL_SERVICE_ERROR
@@ -133,20 +137,6 @@ components:
       - Forbidden
       - UnprocessableEntity
       - RequestTimeout
-    handler.PublicResponse-map_string_string:
-      properties:
-        data:
-          $ref: '#/components/schemas/map_string_string'
-        pagination:
-          $ref: '#/components/schemas/handler.paginationResponse'
-      type: object
-    v1handlers.DelegationCheckPublicResponse:
-      properties:
-        code:
-          type: integer
-        data:
-          type: boolean
-      type: object
     handler.paginationResponse:
       properties:
         next_key:
@@ -160,7 +150,17 @@ components:
         statusCode:
           type: integer
       type: object
-    map_string_string:
-      additionalProperties:
-        type: string
+    handler.PublicResponse-map_string_string:
+      properties:
+        data:
+          $ref: '#/components/schemas/map_string_string'
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
+    v1handlers.DelegationCheckPublicResponse:
+      properties:
+        code:
+          type: integer
+        data:
+          type: boolean
       type: object

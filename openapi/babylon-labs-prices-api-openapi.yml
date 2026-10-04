@@ -37,6 +37,11 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    map_string_float64:
+      additionalProperties:
+        format: float64
+        type: number
+      type: object
     types.ErrorCode:
       enum:
       - INTERNAL_SERVICE_ERROR
@@ -55,13 +60,6 @@ components:
       - Forbidden
       - UnprocessableEntity
       - RequestTimeout
-    handler.PublicResponse-map_string_float64:
-      properties:
-        data:
-          $ref: '#/components/schemas/map_string_float64'
-        pagination:
-          $ref: '#/components/schemas/handler.paginationResponse'
-      type: object
     handler.paginationResponse:
       properties:
         next_key:
@@ -75,8 +73,10 @@ components:
         statusCode:
           type: integer
       type: object
-    map_string_float64:
-      additionalProperties:
-        format: float64
-        type: number
+    handler.PublicResponse-map_string_float64:
+      properties:
+        data:
+          $ref: '#/components/schemas/map_string_float64'
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
       type: object

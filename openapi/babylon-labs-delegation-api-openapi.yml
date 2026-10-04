@@ -85,6 +85,13 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    v2service.UnbondingSlashing:
+      properties:
+        spending_height:
+          type: integer
+        unbonding_slashing_tx_hex:
+          type: string
+      type: object
     v2service.DelegationUnbonding:
       properties:
         covenant_unbonding_signatures:
@@ -98,36 +105,13 @@ components:
         unbonding_tx:
           type: string
       type: object
-    handler.PublicResponse-v2service_DelegationPublic:
+    v2service.StakingSlashing:
       properties:
-        data:
-          $ref: '#/components/schemas/v2service.DelegationPublic'
-        pagination:
-          $ref: '#/components/schemas/handler.paginationResponse'
-      type: object
-    v2service.WithdrawalInfo:
-      properties:
-        tx_hash:
+        slashing_tx_hex:
           type: string
+        spending_height:
+          type: integer
       type: object
-    types.ErrorCode:
-      enum:
-      - INTERNAL_SERVICE_ERROR
-      - VALIDATION_ERROR
-      - NOT_FOUND
-      - BAD_REQUEST
-      - FORBIDDEN
-      - UNPROCESSABLE_ENTITY
-      - REQUEST_TIMEOUT
-      type: string
-      x-enum-varnames:
-      - InternalServiceError
-      - ValidationError
-      - NotFound
-      - BadRequest
-      - Forbidden
-      - UnprocessableEntity
-      - RequestTimeout
     v2service.DelegationStaking:
       properties:
         bbn_inception_height:
@@ -151,90 +135,73 @@ components:
         start_height:
           type: integer
       type: object
-    handler.PublicResponse-v1service_DelegationPublic:
+    v1service.TransactionPublic:
       properties:
-        data:
-          $ref: '#/components/schemas/v1service.DelegationPublic'
-        pagination:
-          $ref: '#/components/schemas/handler.paginationResponse'
-      type: object
-    v2service.UnbondingSlashing:
-      properties:
-        spending_height:
+        output_index:
           type: integer
-        unbonding_slashing_tx_hex:
+        start_height:
+          type: integer
+        start_timestamp:
+          type: string
+        timelock:
+          type: integer
+        tx_hex:
           type: string
       type: object
+    types.ErrorCode:
+      enum:
+      - INTERNAL_SERVICE_ERROR
+      - VALIDATION_ERROR
+      - NOT_FOUND
+      - BAD_REQUEST
+      - FORBIDDEN
+      - UNPROCESSABLE_ENTITY
+      - REQUEST_TIMEOUT
+      type: string
+      x-enum-varnames:
+      - InternalServiceError
+      - ValidationError
+      - NotFound
+      - BadRequest
+      - Forbidden
+      - UnprocessableEntity
+      - RequestTimeout
     handler.paginationResponse:
       properties:
         next_key:
           type: string
       type: object
-    v1service.DelegationPublic:
+    v2service.DelegationPublic:
       properties:
-        finality_provider_pk_hex:
-          type: string
-        is_eligible_for_transition:
-          type: boolean
-        is_overflow:
-          type: boolean
-        is_slashed:
-          type: boolean
-        staker_pk_hex:
-          type: string
-        staking_tx:
-          $ref: '#/components/schemas/v1service.TransactionPublic'
-        staking_tx_hash_hex:
-          type: string
-        staking_value:
+        delegation_staking:
+          $ref: '#/components/schemas/v2service.DelegationStaking'
+        delegation_unbonding:
+          $ref: '#/components/schemas/v2service.DelegationUnbonding'
+        finality_provider_btc_pks_hex:
+          items:
+            type: string
+          type: array
+        params_version:
           type: integer
+        previous_staking_tx_hash_hex:
+          type: string
+        staker_btc_pk_hex:
+          type: string
         state:
-          $ref: '#/components/schemas/types.DelegationState'
-        unbonding_tx:
-          $ref: '#/components/schemas/v1service.TransactionPublic'
+          $ref: '#/components/schemas/v2types.DelegationState'
+        withdrawal_info:
+          $ref: '#/components/schemas/v2service.WithdrawalInfo'
       type: object
-    types.DelegationState:
-      enum:
-      - active
-      - unbonding_requested
-      - unbonding
-      - unbonded
-      - withdrawable
-      - withdrawn
-      - transitioned
-      - slashed
-      type: string
-      x-enum-varnames:
-      - Active
-      - UnbondingRequested
-      - Unbonding
-      - Unbonded
-      - Withdrawable
-      - Withdrawn
-      - Transitioned
-      - Slashed
-    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
+    handler.PublicResponse-v2service_DelegationPublic:
       properties:
-        err: {}
-        errorCode:
-          $ref: '#/components/schemas/types.ErrorCode'
-        statusCode:
-          type: integer
+        data:
+          $ref: '#/components/schemas/v2service.DelegationPublic'
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
       type: object
-    v2service.StakingSlashing:
+    v2service.WithdrawalInfo:
       properties:
-        slashing_tx_hex:
-          type: string
-        spending_height:
-          type: integer
-      type: object
-    v2service.CovenantSignature:
-      properties:
-        covenant_btc_pk_hex:
-          type: string
-        signature_hex:
-          type: string
-        stake_expansion_signature_hex:
+        tx_hash:
           type: string
       type: object
     v2types.DelegationState:
@@ -271,37 +238,70 @@ components:
       - StateEarlyUnbondingSlashingWithdrawn
       - StateSlashed
       - StateExpanded
-    v1service.TransactionPublic:
+    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
       properties:
-        output_index:
+        err: {}
+        errorCode:
+          $ref: '#/components/schemas/types.ErrorCode'
+        statusCode:
           type: integer
-        start_height:
-          type: integer
-        start_timestamp:
-          type: string
-        timelock:
-          type: integer
-        tx_hex:
-          type: string
       type: object
-    v2service.DelegationPublic:
+    types.DelegationState:
+      enum:
+      - active
+      - unbonding_requested
+      - unbonding
+      - unbonded
+      - withdrawable
+      - withdrawn
+      - transitioned
+      - slashed
+      type: string
+      x-enum-varnames:
+      - Active
+      - UnbondingRequested
+      - Unbonding
+      - Unbonded
+      - Withdrawable
+      - Withdrawn
+      - Transitioned
+      - Slashed
+    handler.PublicResponse-v1service_DelegationPublic:
       properties:
-        delegation_staking:
-          $ref: '#/components/schemas/v2service.DelegationStaking'
-        delegation_unbonding:
-          $ref: '#/components/schemas/v2service.DelegationUnbonding'
-        finality_provider_btc_pks_hex:
-          items:
-            type: string
-          type: array
-        params_version:
+        data:
+          $ref: '#/components/schemas/v1service.DelegationPublic'
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
+    v1service.DelegationPublic:
+      properties:
+        finality_provider_pk_hex:
+          type: string
+        is_eligible_for_transition:
+          type: boolean
+        is_overflow:
+          type: boolean
+        is_slashed:
+          type: boolean
+        staker_pk_hex:
+          type: string
+        staking_tx:
+          $ref: '#/components/schemas/v1service.TransactionPublic'
+        staking_tx_hash_hex:
+          type: string
+        staking_value:
           type: integer
-        previous_staking_tx_hash_hex:
-          type: string
-        staker_btc_pk_hex:
-          type: string
         state:
-          $ref: '#/components/schemas/v2types.DelegationState'
-        withdrawal_info:
-          $ref: '#/components/schemas/v2service.WithdrawalInfo'
+          $ref: '#/components/schemas/types.DelegationState'
+        unbonding_tx:
+          $ref: '#/components/schemas/v1service.TransactionPublic'
+      type: object
+    v2service.CovenantSignature:
+      properties:
+        covenant_btc_pk_hex:
+          type: string
+        signature_hex:
+          type: string
+        stake_expansion_signature_hex:
+          type: string
       type: object
