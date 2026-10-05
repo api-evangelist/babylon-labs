@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/babylonlabs-io/babylon-openapi-spec/HEAD/docs/processed/babylon-staking-api-openapi3.yaml",
+ "requested_url": "https://raw.githubusercontent.com/babylonlabs-io/babylon-openapi-spec/HEAD/docs/processed/babylon-staking-api-openapi3.yaml",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 36836,
+ "sha256": "c1b5df0cfc725583f1523a5ef48cc652fbc00b8fd50ffc023a2adc3b1fc7aa9e",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.9), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
