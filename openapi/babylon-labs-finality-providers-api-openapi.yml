@@ -81,55 +81,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    v1service.FpDetailsPublic:
-      properties:
-        active_delegations:
-          type: integer
-        active_tvl:
-          type: integer
-        btc_pk:
-          type: string
-        commission:
-          type: string
-        description:
-          $ref: '#/components/schemas/v1service.FpDescriptionPublic'
-        total_delegations:
-          type: integer
-        total_tvl:
-          type: integer
-      type: object
-    types.ErrorCode:
-      enum:
-      - INTERNAL_SERVICE_ERROR
-      - VALIDATION_ERROR
-      - NOT_FOUND
-      - BAD_REQUEST
-      - FORBIDDEN
-      - UNPROCESSABLE_ENTITY
-      - REQUEST_TIMEOUT
-      type: string
-      x-enum-varnames:
-      - InternalServiceError
-      - ValidationError
-      - NotFound
-      - BadRequest
-      - Forbidden
-      - UnprocessableEntity
-      - RequestTimeout
-    handler.paginationResponse:
-      properties:
-        next_key:
-          type: string
-      type: object
-    handler.PublicResponse-array_v2service_FinalityProviderPublic:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/v2service.FinalityProviderPublic'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/handler.paginationResponse'
-      type: object
     handler.PublicResponse-array_v1service_FpDetailsPublic:
       properties:
         data:
@@ -138,6 +89,14 @@ components:
           type: array
         pagination:
           $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
+    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
+      properties:
+        err: {}
+        errorCode:
+          $ref: '#/components/schemas/types.ErrorCode'
+        statusCode:
+          type: integer
       type: object
     types.FinalityProviderDescription:
       properties:
@@ -151,27 +110,6 @@ components:
           type: string
         website:
           type: string
-      type: object
-    v1service.FpDescriptionPublic:
-      properties:
-        details:
-          type: string
-        identity:
-          type: string
-        moniker:
-          type: string
-        security_contact:
-          type: string
-        website:
-          type: string
-      type: object
-    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
-      properties:
-        err: {}
-        errorCode:
-          $ref: '#/components/schemas/types.ErrorCode'
-        statusCode:
-          type: integer
       type: object
     v2service.FinalityProviderPublic:
       properties:
@@ -192,6 +130,68 @@ components:
         type:
           type: string
       type: object
+    handler.paginationResponse:
+      properties:
+        next_key:
+          type: string
+      type: object
+    handler.PublicResponse-array_v2service_FinalityProviderPublic:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/v2service.FinalityProviderPublic'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
+    v1service.FpDetailsPublic:
+      properties:
+        active_delegations:
+          type: integer
+        active_tvl:
+          type: integer
+        btc_pk:
+          type: string
+        commission:
+          type: string
+        description:
+          $ref: '#/components/schemas/v1service.FpDescriptionPublic'
+        total_delegations:
+          type: integer
+        total_tvl:
+          type: integer
+      type: object
+    v1service.FpDescriptionPublic:
+      properties:
+        details:
+          type: string
+        identity:
+          type: string
+        moniker:
+          type: string
+        security_contact:
+          type: string
+        website:
+          type: string
+      type: object
+    types.ErrorCode:
+      enum:
+      - INTERNAL_SERVICE_ERROR
+      - VALIDATION_ERROR
+      - NOT_FOUND
+      - BAD_REQUEST
+      - FORBIDDEN
+      - UNPROCESSABLE_ENTITY
+      - REQUEST_TIMEOUT
+      type: string
+      x-enum-varnames:
+      - InternalServiceError
+      - ValidationError
+      - NotFound
+      - BadRequest
+      - Forbidden
+      - UnprocessableEntity
+      - RequestTimeout
     types.FinalityProviderQueryingState:
       enum:
       - active

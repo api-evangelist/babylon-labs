@@ -56,38 +56,6 @@ components:
         pagination:
           $ref: '#/components/schemas/handler.paginationResponse'
       type: object
-    v2service.StakingAPRPublic:
-      properties:
-        additional_baby_needed_for_boost:
-          type: number
-        boost:
-          $ref: '#/components/schemas/v2service.apr'
-        current:
-          $ref: '#/components/schemas/v2service.apr'
-      type: object
-    types.ErrorCode:
-      enum:
-      - INTERNAL_SERVICE_ERROR
-      - VALIDATION_ERROR
-      - NOT_FOUND
-      - BAD_REQUEST
-      - FORBIDDEN
-      - UNPROCESSABLE_ENTITY
-      - REQUEST_TIMEOUT
-      type: string
-      x-enum-varnames:
-      - InternalServiceError
-      - ValidationError
-      - NotFound
-      - BadRequest
-      - Forbidden
-      - UnprocessableEntity
-      - RequestTimeout
-    handler.paginationResponse:
-      properties:
-        next_key:
-          type: string
-      type: object
     v2service.apr:
       properties:
         baby_staking_apr:
@@ -107,3 +75,35 @@ components:
         statusCode:
           type: integer
       type: object
+    v2service.StakingAPRPublic:
+      properties:
+        additional_baby_needed_for_boost:
+          type: number
+        boost:
+          $ref: '#/components/schemas/v2service.apr'
+        current:
+          $ref: '#/components/schemas/v2service.apr'
+      type: object
+    handler.paginationResponse:
+      properties:
+        next_key:
+          type: string
+      type: object
+    types.ErrorCode:
+      enum:
+      - INTERNAL_SERVICE_ERROR
+      - VALIDATION_ERROR
+      - NOT_FOUND
+      - BAD_REQUEST
+      - FORBIDDEN
+      - UNPROCESSABLE_ENTITY
+      - REQUEST_TIMEOUT
+      type: string
+      x-enum-varnames:
+      - InternalServiceError
+      - ValidationError
+      - NotFound
+      - BadRequest
+      - Forbidden
+      - UnprocessableEntity
+      - RequestTimeout

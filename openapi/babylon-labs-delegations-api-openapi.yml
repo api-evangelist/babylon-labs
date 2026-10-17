@@ -69,13 +69,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    v2service.UnbondingSlashing:
-      properties:
-        spending_height:
-          type: integer
-        unbonding_slashing_tx_hex:
-          type: string
-      type: object
     v2service.DelegationUnbonding:
       properties:
         covenant_unbonding_signatures:
@@ -95,6 +88,83 @@ components:
           type: string
         spending_height:
           type: integer
+      type: object
+    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
+      properties:
+        err: {}
+        errorCode:
+          $ref: '#/components/schemas/types.ErrorCode'
+        statusCode:
+          type: integer
+      type: object
+    handler.PublicResponse-array_v2service_DelegationPublic:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/v2service.DelegationPublic'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/handler.paginationResponse'
+      type: object
+    v2service.WithdrawalInfo:
+      properties:
+        tx_hash:
+          type: string
+      type: object
+    v2types.DelegationState:
+      enum:
+      - PENDING
+      - VERIFIED
+      - ACTIVE
+      - TIMELOCK_UNBONDING
+      - EARLY_UNBONDING
+      - TIMELOCK_WITHDRAWABLE
+      - EARLY_UNBONDING_WITHDRAWABLE
+      - TIMELOCK_SLASHING_WITHDRAWABLE
+      - EARLY_UNBONDING_SLASHING_WITHDRAWABLE
+      - TIMELOCK_WITHDRAWN
+      - EARLY_UNBONDING_WITHDRAWN
+      - TIMELOCK_SLASHING_WITHDRAWN
+      - EARLY_UNBONDING_SLASHING_WITHDRAWN
+      - SLASHED
+      - EXPANDED
+      type: string
+      x-enum-varnames:
+      - StatePending
+      - StateVerified
+      - StateActive
+      - StateTimelockUnbonding
+      - StateEarlyUnbonding
+      - StateTimelockWithdrawable
+      - StateEarlyUnbondingWithdrawable
+      - StateTimelockSlashingWithdrawable
+      - StateEarlyUnbondingSlashingWithdrawable
+      - StateTimelockWithdrawn
+      - StateEarlyUnbondingWithdrawn
+      - StateTimelockSlashingWithdrawn
+      - StateEarlyUnbondingSlashingWithdrawn
+      - StateSlashed
+      - StateExpanded
+    v2service.UnbondingSlashing:
+      properties:
+        spending_height:
+          type: integer
+        unbonding_slashing_tx_hex:
+          type: string
+      type: object
+    handler.paginationResponse:
+      properties:
+        next_key:
+          type: string
+      type: object
+    v2service.CovenantSignature:
+      properties:
+        covenant_btc_pk_hex:
+          type: string
+        signature_hex:
+          type: string
+        stake_expansion_signature_hex:
+          type: string
       type: object
     v2service.DelegationStaking:
       properties:
@@ -137,67 +207,6 @@ components:
       - Forbidden
       - UnprocessableEntity
       - RequestTimeout
-    handler.paginationResponse:
-      properties:
-        next_key:
-          type: string
-      type: object
-    v2service.WithdrawalInfo:
-      properties:
-        tx_hash:
-          type: string
-      type: object
-    v2types.DelegationState:
-      enum:
-      - PENDING
-      - VERIFIED
-      - ACTIVE
-      - TIMELOCK_UNBONDING
-      - EARLY_UNBONDING
-      - TIMELOCK_WITHDRAWABLE
-      - EARLY_UNBONDING_WITHDRAWABLE
-      - TIMELOCK_SLASHING_WITHDRAWABLE
-      - EARLY_UNBONDING_SLASHING_WITHDRAWABLE
-      - TIMELOCK_WITHDRAWN
-      - EARLY_UNBONDING_WITHDRAWN
-      - TIMELOCK_SLASHING_WITHDRAWN
-      - EARLY_UNBONDING_SLASHING_WITHDRAWN
-      - SLASHED
-      - EXPANDED
-      type: string
-      x-enum-varnames:
-      - StatePending
-      - StateVerified
-      - StateActive
-      - StateTimelockUnbonding
-      - StateEarlyUnbonding
-      - StateTimelockWithdrawable
-      - StateEarlyUnbondingWithdrawable
-      - StateTimelockSlashingWithdrawable
-      - StateEarlyUnbondingSlashingWithdrawable
-      - StateTimelockWithdrawn
-      - StateEarlyUnbondingWithdrawn
-      - StateTimelockSlashingWithdrawn
-      - StateEarlyUnbondingSlashingWithdrawn
-      - StateSlashed
-      - StateExpanded
-    handler.PublicResponse-array_v2service_DelegationPublic:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/v2service.DelegationPublic'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/handler.paginationResponse'
-      type: object
-    github_com_babylonlabs-io_staking-api-service_internal_shared_types.Error:
-      properties:
-        err: {}
-        errorCode:
-          $ref: '#/components/schemas/types.ErrorCode'
-        statusCode:
-          type: integer
-      type: object
     v2service.DelegationPublic:
       properties:
         delegation_staking:
@@ -218,13 +227,4 @@ components:
           $ref: '#/components/schemas/v2types.DelegationState'
         withdrawal_info:
           $ref: '#/components/schemas/v2service.WithdrawalInfo'
-      type: object
-    v2service.CovenantSignature:
-      properties:
-        covenant_btc_pk_hex:
-          type: string
-        signature_hex:
-          type: string
-        stake_expansion_signature_hex:
-          type: string
       type: object
