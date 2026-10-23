@@ -228,3 +228,9 @@ components:
         withdrawal_info:
           $ref: '#/components/schemas/v2service.WithdrawalInfo'
       type: object
+x-provenance:
+  method: harvested
+  publisher: Babylon Labs
+  source: https://raw.githubusercontent.com/babylonlabs-io/babylon-openapi-spec/HEAD/docs/processed/babylon-staking-api-openapi3.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
