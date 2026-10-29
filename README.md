@@ -64,6 +64,126 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Babylon Labs is a company surfaced as a portfolio company of paradigm and added to the API Evangelist network as a stub for enrichment. Sector: crypto-defi. This profile is a lead awaiting the enrichment pipeline.
+Babylon Labs builds the Bitcoin staking protocol that lets BTC holders secure Proof-of-Stake networks without custody, bridges, or wrapping. BTC is locked in time-locked covenant scripts on Bitcoin L1 and delegated to finality providers, providing Bitcoin-grade economic security to Cosmos chains, rollups, and other Bitcoin Supercharged Networks (BSNs) while stakers retain self-custody. Its mainnet, Babylon Genesis, launched April 2025 on CometBFT with CosmWasm smart contracts and the BABY native token. Babylon exposes a public Babylon Staking API for querying delegations, finality providers, network parameters, stats, prices, and APR, plus Go and TypeScript SDKs, node/operator daemons, and CosmWasm contracts.
 
-Backed by: paradigm — https://babylonlabs.io
+**Areas:** Company · Crypto Defi · Bitcoin · Bitcoin Staking · Blockchain · Cosmos · Proof of Stake · DeFi · Staking
+
+## Babylon Labs on APIs.io
+
+Everything profiled for Babylon Labs is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/babylon-labs/](https://apis.io/providers/babylon-labs/)** — or go straight to one of the APIs or properties below.
+
+### APIs (11)
+
+- [Babylon Labs Shared API](https://apis.io/apis/babylon-labs/babylon-labs-shared-api/) — Shared API endpoints
+- [Babylon Labs Apr API](https://apis.io/apis/babylon-labs/babylon-labs-apr-api/) — The Apr API from Babylon Labs — 1 operation(s) for apr.
+- [Babylon Labs Delegation API](https://apis.io/apis/babylon-labs/babylon-labs-delegation-api/) — The Delegation API from Babylon Labs — 2 operation(s) for delegation.
+- [Babylon Labs Delegations API](https://apis.io/apis/babylon-labs/babylon-labs-delegations-api/) — The Delegations API from Babylon Labs — 1 operation(s) for delegations.
+- [Babylon Labs Finality Providers API](https://apis.io/apis/babylon-labs/babylon-labs-finality-providers-api/) — The Finality Providers API from Babylon Labs — 2 operation(s) for finality providers.
+- [Babylon Labs Global Params API](https://apis.io/apis/babylon-labs/babylon-labs-global-params-api/) — The Global Params API from Babylon Labs — 1 operation(s) for global params.
+- [Babylon Labs Network Info API](https://apis.io/apis/babylon-labs/babylon-labs-network-info-api/) — The Network Info API from Babylon Labs — 1 operation(s) for network info.
+- [Babylon Labs Prices API](https://apis.io/apis/babylon-labs/babylon-labs-prices-api/) — The Prices API from Babylon Labs — 1 operation(s) for prices.
+- [Babylon Labs Staker API](https://apis.io/apis/babylon-labs/babylon-labs-staker-api/) — The Staker API from Babylon Labs — 2 operation(s) for staker.
+- [Babylon Labs Stats API](https://apis.io/apis/babylon-labs/babylon-labs-stats-api/) — The Stats API from Babylon Labs — 3 operation(s) for stats.
+- [Babylon Labs Unbonding API](https://apis.io/apis/babylon-labs/babylon-labs-unbonding-api/) — The Unbonding API from Babylon Labs — 2 operation(s) for unbonding.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [babylon-labs-staking](https://apis.io/servers/babylon-labs/babylon-labs-staking/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Babylon Labs Agentic Access](https://apis.io/agentic-access/babylon-labs/babylon-labs-agentic-access/)
+
+#### Collections (3)
+
+Postman and Open Collection request collections.
+
+- [Babylon Staking shared API](https://apis.io/collections/babylon-labs/open-babylon-labs-shared-api/)
+- [Babylon Staking shared v1 API](https://apis.io/collections/babylon-labs/open-babylon-labs-v1-api/)
+- [Babylon Staking shared v2 API](https://apis.io/collections/babylon-labs/open-babylon-labs-v2-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Babylon Labs Staking Api Overlay](https://apis.io/overlays/babylon-labs/babylon-labs-staking-api-overlay/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Babylon Labs Domain Security](https://apis.io/security/babylon-labs/babylon-labs-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://babylonlabs.io)
+- [Documentation](https://docs.babylonlabs.io)
+- [Getting started](https://docs.babylonlabs.io/stakers/)
+- [Support](https://discord.gg/babylonglobal)
+- [Blog](https://babylonlabs.io/blog)
+- [Terms of service](https://babylonlabs.io/terms)
+- [Privacy policy](https://babylonlabs.io/privacy-policy)
+- [GitHub](https://github.com/babylonlabs-io)
+
+## API Evangelist rating
+
+**Kin Score 37.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 43.5 |
+| Contract governance | 4.5 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 54.2 |
+| Access clarity | 21.1 |
+
+**Agent readiness 21.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 18.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/babylon-labs/](https://apis.io/providers/babylon-labs/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Babylon Labs: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/babylon-labs/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
